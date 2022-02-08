@@ -125,6 +125,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         fontFamily: 'Roboto',
                                                         color: FlutterFlowTheme
                                                             .primaryColor,
+                                                        fontSize: 12,
                                                       ),
                                                     ),
                                                     startAngle: 360),

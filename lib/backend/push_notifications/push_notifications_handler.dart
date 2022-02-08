@@ -15,8 +15,6 @@ import '../../more_info/more_info_widget.dart';
 import '../../edit_profile/edit_profile_widget.dart';
 import '../../chat_page/chat_page_widget.dart';
 import '../../verify/verify_widget.dart';
-import '../../create_group/create_group_widget.dart';
-import '../../add_chat_members/add_chat_members_widget.dart';
 
 class PushNotificationsHandler extends StatefulWidget {
   const PushNotificationsHandler(
@@ -102,10 +100,6 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'MessagesPage': (data) async => NavBarPage(initialPage: 'MessagesPageWidget'),
   'verify': (data) async => VerifyWidget(),
   'members': (data) async => NavBarPage(initialPage: 'MembersWidget'),
-  'createGroup': (data) async => CreateGroupWidget(),
-  'addChatMembers': (data) async => AddChatMembersWidget(
-        chat: await getDocumentParameter(data, 'chat', ChatsRecord.serializer),
-      ),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>

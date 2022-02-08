@@ -2,7 +2,6 @@ import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../chat_page/chat_page_widget.dart';
 import '../components/empty_list_widget.dart';
-import '../create_group/create_group_widget.dart';
 import '../flutter_flow/chat/index.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_toggle_icon.dart';
@@ -93,29 +92,7 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
               ),
           ],
         ),
-        actions: [
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 18, 0),
-            child: InkWell(
-              onTap: () async {
-                await Navigator.push(
-                  context,
-                  PageTransition(
-                    type: PageTransitionType.bottomToTop,
-                    duration: Duration(milliseconds: 300),
-                    reverseDuration: Duration(milliseconds: 300),
-                    child: CreateGroupWidget(),
-                  ),
-                );
-              },
-              child: Icon(
-                Icons.group_add,
-                color: Colors.black,
-                size: 24,
-              ),
-            ),
-          ),
-        ],
+        actions: [],
         centerTitle: false,
         elevation: 2,
       ),
