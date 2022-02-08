@@ -29,6 +29,7 @@ class _MembersWidgetState extends State<MembersWidget> {
           'Team members',
           style: FlutterFlowTheme.title1.override(
             fontFamily: 'Roboto',
+            fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
         ),

@@ -43,15 +43,6 @@ class _VerifyWidgetState extends State<VerifyWidget> {
             ),
           ),
         ),
-        title: Text(
-          'Create Password',
-          style: FlutterFlowTheme.title2.override(
-            fontFamily: 'Lexend Deca',
-            color: Colors.white,
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
         actions: [],
         centerTitle: false,
       ),
