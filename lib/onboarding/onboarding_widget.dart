@@ -75,7 +75,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                       style: FlutterFlowTheme.title1.override(
                                         fontFamily: 'Lexend Deca',
                                         color: FlutterFlowTheme.secondaryColor,
-                                        fontSize: 32,
+                                        fontSize: 22,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
