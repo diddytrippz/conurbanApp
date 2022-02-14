@@ -512,7 +512,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                               mainAxisAlignment: MainAxisAlignment.start,
                                                                               children: [
                                                                                 Container(
-                                                                                  height: 70,
+                                                                                  height: 80,
                                                                                   constraints: BoxConstraints(
                                                                                     maxHeight: 32,
                                                                                   ),
@@ -552,7 +552,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
                                                                                   child: Container(
-                                                                                    height: 70,
+                                                                                    height: 80,
                                                                                     constraints: BoxConstraints(
                                                                                       maxHeight: 32,
                                                                                     ),
@@ -607,7 +607,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                               mainAxisAlignment: MainAxisAlignment.start,
                                                                               children: [
                                                                                 Container(
-                                                                                  height: 70,
+                                                                                  height: 80,
                                                                                   constraints: BoxConstraints(
                                                                                     maxHeight: 32,
                                                                                   ),
@@ -647,7 +647,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
                                                                                   child: Container(
-                                                                                    height: 70,
+                                                                                    height: 80,
                                                                                     constraints: BoxConstraints(
                                                                                       maxHeight: 32,
                                                                                     ),
