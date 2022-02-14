@@ -16,7 +16,7 @@ class _EmptyInboxWidgetState extends State<EmptyInboxWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(16, 30, 16, 30),
+      padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
