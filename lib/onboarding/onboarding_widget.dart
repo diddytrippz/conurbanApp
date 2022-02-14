@@ -39,8 +39,6 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                       scrollDirection: Axis.horizontal,
                       children: [
                         Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height * 1,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context).tertiaryColor,
                           ),
