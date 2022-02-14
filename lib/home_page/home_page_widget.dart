@@ -226,84 +226,69 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        12, 10, 4, 0),
-                                    child: Wrap(
-                                      spacing: 0,
-                                      runSpacing: 0,
-                                      alignment: WrapAlignment.spaceAround,
-                                      crossAxisAlignment:
-                                          WrapCrossAlignment.start,
-                                      direction: Axis.horizontal,
-                                      runAlignment: WrapAlignment.start,
-                                      verticalDirection: VerticalDirection.up,
-                                      clipBehavior: Clip.none,
-                                      children: [
-                                        Container(
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          height: 80,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .tertiaryColor,
-                                          ),
-                                          child: FlutterFlowChoiceChips(
-                                            initiallySelected:
-                                                choiceChipsValue != null
-                                                    ? [choiceChipsValue]
-                                                    : ['49 Jorissen'],
-                                            options: [
-                                              ChipData('49 Jorissen'),
-                                              ChipData('80 Jorissen'),
-                                              ChipData('Braamlofts'),
-                                              ChipData('Dunvista'),
-                                              ChipData('126 Siemert'),
-                                              ChipData('Wynton Joy'),
-                                              ChipData('Rennie House')
-                                            ],
-                                            onChanged: (val) => setState(() =>
-                                                choiceChipsValue = val.first),
-                                            selectedChipStyle: ChipStyle(
-                                              backgroundColor:
-                                                  Color(0xFF262D34),
-                                              textStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily: 'Roboto',
-                                                        color: Colors.white,
-                                                        fontSize: 14,
-                                                      ),
-                                              iconColor: Colors.white,
-                                              iconSize: 0,
-                                              labelPadding:
-                                                  EdgeInsetsDirectional
-                                                      .fromSTEB(10, 4, 10, 4),
-                                              elevation: 4,
-                                            ),
-                                            unselectedChipStyle: ChipStyle(
-                                              backgroundColor: Colors.white,
-                                              textStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyText2
-                                                      .override(
-                                                        fontFamily: 'Roboto',
-                                                        color:
-                                                            Color(0xFF262D34),
-                                                      ),
-                                              iconColor: Color(0xFF262D34),
-                                              iconSize: 18,
-                                              labelPadding:
-                                                  EdgeInsetsDirectional
-                                                      .fromSTEB(10, 4, 10, 4),
-                                              elevation: 4,
-                                            ),
-                                            chipSpacing: 18,
-                                            multiselect: false,
-                                          ),
+                                  Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    height: 80,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          12, 0, 12, 0),
+                                      child: FlutterFlowChoiceChips(
+                                        initiallySelected:
+                                            choiceChipsValue != null
+                                                ? [choiceChipsValue]
+                                                : ['49 Jorissen'],
+                                        options: [
+                                          ChipData('49 Jorissen'),
+                                          ChipData('80 Jorissen'),
+                                          ChipData('Braamlofts'),
+                                          ChipData('Dunvista'),
+                                          ChipData('126 Siemert'),
+                                          ChipData('Wynton Joy'),
+                                          ChipData('Rennie House'),
+                                          ChipData('YMCA')
+                                        ],
+                                        onChanged: (val) => setState(
+                                            () => choiceChipsValue = val.first),
+                                        selectedChipStyle: ChipStyle(
+                                          backgroundColor: Color(0xFF262D34),
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyText1
+                                                  .override(
+                                                    fontFamily: 'Roboto',
+                                                    color: Colors.white,
+                                                    fontSize: 14,
+                                                  ),
+                                          iconColor: Colors.white,
+                                          iconSize: 0,
+                                          labelPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10, 4, 10, 4),
+                                          elevation: 4,
                                         ),
-                                      ],
+                                        unselectedChipStyle: ChipStyle(
+                                          backgroundColor: Colors.white,
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyText2
+                                                  .override(
+                                                    fontFamily: 'Roboto',
+                                                    color: Color(0xFF262D34),
+                                                  ),
+                                          iconColor: Color(0xFF262D34),
+                                          iconSize: 18,
+                                          labelPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10, 4, 10, 4),
+                                          elevation: 4,
+                                        ),
+                                        chipSpacing: 18,
+                                        multiselect: false,
+                                      ),
                                     ),
                                   ),
                                 ],
