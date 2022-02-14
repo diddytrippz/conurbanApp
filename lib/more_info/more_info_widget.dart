@@ -31,7 +31,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.secondaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).secondaryColor,
       body: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -54,7 +54,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                         width: double.infinity,
                         height: 100,
                         decoration: BoxDecoration(
-                          color: FlutterFlowTheme.tertiaryColor,
+                          color: FlutterFlowTheme.of(context).tertiaryColor,
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
@@ -72,7 +72,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height * 1,
                         decoration: BoxDecoration(
-                          color: FlutterFlowTheme.tertiaryColor,
+                          color: FlutterFlowTheme.of(context).tertiaryColor,
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Column(
@@ -211,8 +211,8 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                               MediaQuery.of(context).size.width,
                                           height: double.infinity,
                                           decoration: BoxDecoration(
-                                            color:
-                                                FlutterFlowTheme.tertiaryColor,
+                                            color: FlutterFlowTheme.of(context)
+                                                .tertiaryColor,
                                             borderRadius: BorderRadius.only(
                                               bottomLeft: Radius.circular(0),
                                               bottomRight: Radius.circular(0),
@@ -231,13 +231,16 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                     children: [
                                                       TabBar(
                                                         labelColor:
-                                                            FlutterFlowTheme
+                                                            FlutterFlowTheme.of(
+                                                                    context)
                                                                 .secondaryColor,
                                                         labelStyle:
-                                                            FlutterFlowTheme
+                                                            FlutterFlowTheme.of(
+                                                                    context)
                                                                 .bodyText1,
                                                         indicatorColor:
-                                                            FlutterFlowTheme
+                                                            FlutterFlowTheme.of(
+                                                                    context)
                                                                 .secondaryColor,
                                                         tabs: [
                                                           Tab(
@@ -304,7 +307,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                       width: 60,
                                                                                       height: 60,
                                                                                       child: SpinKitPulse(
-                                                                                        color: FlutterFlowTheme.primaryColor,
+                                                                                        color: FlutterFlowTheme.of(context).primaryColor,
                                                                                         size: 60,
                                                                                       ),
                                                                                     ),
@@ -322,10 +325,10 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                   children: [
                                                                                     Text(
                                                                                       'Reported ${dateTimeFormat('relative', widget.jobStatus.createdTime)}',
-                                                                                      style: FlutterFlowTheme.subtitle1.override(
-                                                                                        fontFamily: 'Roboto',
-                                                                                        fontSize: 16,
-                                                                                      ),
+                                                                                      style: FlutterFlowTheme.of(context).subtitle1.override(
+                                                                                            fontFamily: 'Roboto',
+                                                                                            fontSize: 16,
+                                                                                          ),
                                                                                     ),
                                                                                     if ((currentUserDocument?.role) == 'Admin')
                                                                                       AuthUserStreamWidget(
@@ -334,10 +337,10 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                           borderRadius: 30,
                                                                                           borderWidth: 1,
                                                                                           buttonSize: 45,
-                                                                                          fillColor: FlutterFlowTheme.secondaryColor,
+                                                                                          fillColor: FlutterFlowTheme.of(context).secondaryColor,
                                                                                           icon: Icon(
                                                                                             Icons.mail_outline,
-                                                                                            color: FlutterFlowTheme.tertiaryColor,
+                                                                                            color: FlutterFlowTheme.of(context).tertiaryColor,
                                                                                             size: 25,
                                                                                           ),
                                                                                           onPressed: () async {
@@ -382,7 +385,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                       width: 60,
                                                                                       height: 60,
                                                                                       child: SpinKitPulse(
-                                                                                        color: FlutterFlowTheme.primaryColor,
+                                                                                        color: FlutterFlowTheme.of(context).primaryColor,
                                                                                         size: 60,
                                                                                       ),
                                                                                     ),
@@ -400,10 +403,10 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                   children: [
                                                                                     Text(
                                                                                       'Completed ${dateTimeFormat('relative', widget.jobStatus.createdTime)}',
-                                                                                      style: FlutterFlowTheme.subtitle1.override(
-                                                                                        fontFamily: 'Roboto',
-                                                                                        fontSize: 16,
-                                                                                      ),
+                                                                                      style: FlutterFlowTheme.of(context).subtitle1.override(
+                                                                                            fontFamily: 'Roboto',
+                                                                                            fontSize: 16,
+                                                                                          ),
                                                                                     ),
                                                                                     if ((currentUserDocument?.role) == 'Admin')
                                                                                       AuthUserStreamWidget(
@@ -412,10 +415,10 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                           borderRadius: 30,
                                                                                           borderWidth: 1,
                                                                                           buttonSize: 45,
-                                                                                          fillColor: FlutterFlowTheme.secondaryColor,
+                                                                                          fillColor: FlutterFlowTheme.of(context).secondaryColor,
                                                                                           icon: Icon(
                                                                                             Icons.mail_outlined,
-                                                                                            color: FlutterFlowTheme.tertiaryColor,
+                                                                                            color: FlutterFlowTheme.of(context).tertiaryColor,
                                                                                             size: 25,
                                                                                           ),
                                                                                           onPressed: () async {
@@ -447,11 +450,10 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                           child:
                                                                               AutoSizeText(
                                                                             widget.jobStatus.issue,
-                                                                            style:
-                                                                                FlutterFlowTheme.title1.override(
-                                                                              fontFamily: 'Roboto',
-                                                                              fontSize: 18,
-                                                                            ),
+                                                                            style: FlutterFlowTheme.of(context).title1.override(
+                                                                                  fontFamily: 'Roboto',
+                                                                                  fontSize: 18,
+                                                                                ),
                                                                           ),
                                                                         ),
                                                                         if ((widget.jobStatus.notes) !=
@@ -468,12 +470,12 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                 widget.jobStatus.notes,
                                                                                 'This section is currently empty. No additional notes/attachments were added in this request',
                                                                               ),
-                                                                              style: FlutterFlowTheme.bodyText1.override(
-                                                                                fontFamily: 'Roboto',
-                                                                                color: Color(0xFF595959),
-                                                                                fontSize: 16,
-                                                                                fontWeight: FontWeight.normal,
-                                                                              ),
+                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                    fontFamily: 'Roboto',
+                                                                                    color: Color(0xFF595959),
+                                                                                    fontSize: 16,
+                                                                                    fontWeight: FontWeight.normal,
+                                                                                  ),
                                                                             ),
                                                                           ),
                                                                       ],
@@ -486,7 +488,8 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                         .width,
                                                                     decoration:
                                                                         BoxDecoration(
-                                                                      color: FlutterFlowTheme
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
                                                                           .tertiaryColor,
                                                                     ),
                                                                     child:
@@ -514,7 +517,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                     maxHeight: 32,
                                                                                   ),
                                                                                   decoration: BoxDecoration(
-                                                                                    color: FlutterFlowTheme.campusGrey,
+                                                                                    color: FlutterFlowTheme.of(context).campusGrey,
                                                                                     boxShadow: [
                                                                                       BoxShadow(
                                                                                         blurRadius: 4,
@@ -534,12 +537,12 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                           padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                                                                                           child: AutoSizeText(
                                                                                             widget.jobStatus.category,
-                                                                                            style: FlutterFlowTheme.bodyText1.override(
-                                                                                              fontFamily: 'Lexend Deca',
-                                                                                              color: Colors.white,
-                                                                                              fontSize: 16,
-                                                                                              fontWeight: FontWeight.normal,
-                                                                                            ),
+                                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                  fontFamily: 'Lexend Deca',
+                                                                                                  color: Colors.white,
+                                                                                                  fontSize: 16,
+                                                                                                  fontWeight: FontWeight.normal,
+                                                                                                ),
                                                                                           ),
                                                                                         ),
                                                                                       ],
@@ -554,7 +557,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                       maxHeight: 32,
                                                                                     ),
                                                                                     decoration: BoxDecoration(
-                                                                                      color: FlutterFlowTheme.secondaryColor,
+                                                                                      color: FlutterFlowTheme.of(context).secondaryColor,
                                                                                       boxShadow: [
                                                                                         BoxShadow(
                                                                                           blurRadius: 4,
@@ -574,12 +577,12 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                             padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                                                                                             child: AutoSizeText(
                                                                                               widget.jobStatus.building,
-                                                                                              style: FlutterFlowTheme.bodyText1.override(
-                                                                                                fontFamily: 'Lexend Deca',
-                                                                                                color: Colors.white,
-                                                                                                fontSize: 16,
-                                                                                                fontWeight: FontWeight.normal,
-                                                                                              ),
+                                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                    fontFamily: 'Lexend Deca',
+                                                                                                    color: Colors.white,
+                                                                                                    fontSize: 16,
+                                                                                                    fontWeight: FontWeight.normal,
+                                                                                                  ),
                                                                                             ),
                                                                                           ),
                                                                                         ],
@@ -609,7 +612,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                     maxHeight: 32,
                                                                                   ),
                                                                                   decoration: BoxDecoration(
-                                                                                    color: FlutterFlowTheme.campusGrey,
+                                                                                    color: FlutterFlowTheme.of(context).campusGrey,
                                                                                     boxShadow: [
                                                                                       BoxShadow(
                                                                                         blurRadius: 4,
@@ -629,12 +632,12 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                           padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                                                                                           child: AutoSizeText(
                                                                                             widget.jobStatus.category,
-                                                                                            style: FlutterFlowTheme.bodyText1.override(
-                                                                                              fontFamily: 'Lexend Deca',
-                                                                                              color: Colors.white,
-                                                                                              fontSize: 16,
-                                                                                              fontWeight: FontWeight.normal,
-                                                                                            ),
+                                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                  fontFamily: 'Lexend Deca',
+                                                                                                  color: Colors.white,
+                                                                                                  fontSize: 16,
+                                                                                                  fontWeight: FontWeight.normal,
+                                                                                                ),
                                                                                           ),
                                                                                         ),
                                                                                       ],
@@ -649,7 +652,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                       maxHeight: 32,
                                                                                     ),
                                                                                     decoration: BoxDecoration(
-                                                                                      color: FlutterFlowTheme.secondaryColor,
+                                                                                      color: FlutterFlowTheme.of(context).secondaryColor,
                                                                                       boxShadow: [
                                                                                         BoxShadow(
                                                                                           blurRadius: 4,
@@ -669,12 +672,12 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                             padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                                                                                             child: AutoSizeText(
                                                                                               widget.jobStatus.building,
-                                                                                              style: FlutterFlowTheme.bodyText1.override(
-                                                                                                fontFamily: 'Lexend Deca',
-                                                                                                color: Colors.white,
-                                                                                                fontSize: 16,
-                                                                                                fontWeight: FontWeight.normal,
-                                                                                              ),
+                                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                    fontFamily: 'Lexend Deca',
+                                                                                                    color: Colors.white,
+                                                                                                    fontSize: 16,
+                                                                                                    fontWeight: FontWeight.normal,
+                                                                                                  ),
                                                                                             ),
                                                                                           ),
                                                                                         ],
@@ -706,7 +709,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                     width: 60,
                                                                                     height: 60,
                                                                                     child: SpinKitPulse(
-                                                                                      color: FlutterFlowTheme.primaryColor,
+                                                                                      color: FlutterFlowTheme.of(context).primaryColor,
                                                                                       size: 60,
                                                                                     ),
                                                                                   ),
@@ -732,12 +735,12 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                           width: 45,
                                                                                           height: 45,
                                                                                           decoration: BoxDecoration(
-                                                                                            color: FlutterFlowTheme.tertiaryColor,
+                                                                                            color: FlutterFlowTheme.of(context).tertiaryColor,
                                                                                             shape: BoxShape.circle,
                                                                                           ),
                                                                                           child: Icon(
                                                                                             Icons.account_circle,
-                                                                                            color: FlutterFlowTheme.campusGrey,
+                                                                                            color: FlutterFlowTheme.of(context).campusGrey,
                                                                                             size: 30,
                                                                                           ),
                                                                                         ),
@@ -746,10 +749,10 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                         padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                                                                         child: Text(
                                                                                           widget.jobStatus.displayName,
-                                                                                          style: FlutterFlowTheme.subtitle1.override(
-                                                                                            fontFamily: 'Roboto',
-                                                                                            fontSize: 18,
-                                                                                          ),
+                                                                                          style: FlutterFlowTheme.of(context).subtitle1.override(
+                                                                                                fontFamily: 'Roboto',
+                                                                                                fontSize: 18,
+                                                                                              ),
                                                                                         ),
                                                                                       ),
                                                                                     ],
@@ -760,7 +763,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                     children: [
                                                                                       AutoSizeText(
                                                                                         'Rating',
-                                                                                        style: FlutterFlowTheme.bodyText2,
+                                                                                        style: FlutterFlowTheme.of(context).bodyText2,
                                                                                       ),
                                                                                       Row(
                                                                                         mainAxisSize: MainAxisSize.max,
@@ -772,12 +775,12 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                                 widget.jobStatus.rating.toString(),
                                                                                                 '0',
                                                                                               ),
-                                                                                              style: FlutterFlowTheme.title3,
+                                                                                              style: FlutterFlowTheme.of(context).title3,
                                                                                             ),
                                                                                           ),
                                                                                           Icon(
                                                                                             Icons.star_rounded,
-                                                                                            color: FlutterFlowTheme.secondaryColor,
+                                                                                            color: FlutterFlowTheme.of(context).secondaryColor,
                                                                                             size: 20,
                                                                                           ),
                                                                                         ],
@@ -805,21 +808,21 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                             title:
                                                                                 Text(
                                                                               widget.jobStatus.building,
-                                                                              style: FlutterFlowTheme.subtitle1.override(
-                                                                                fontFamily: 'Roboto',
-                                                                                fontSize: 18,
-                                                                              ),
+                                                                              style: FlutterFlowTheme.of(context).subtitle1.override(
+                                                                                    fontFamily: 'Roboto',
+                                                                                    fontSize: 18,
+                                                                                  ),
                                                                             ),
                                                                             subtitle:
                                                                                 Text(
                                                                               'Room: ${widget.jobStatus.room}',
-                                                                              style: FlutterFlowTheme.subtitle2.override(
-                                                                                fontFamily: 'Roboto',
-                                                                                fontSize: 18,
-                                                                              ),
+                                                                              style: FlutterFlowTheme.of(context).subtitle2.override(
+                                                                                    fontFamily: 'Roboto',
+                                                                                    fontSize: 18,
+                                                                                  ),
                                                                             ),
                                                                             tileColor:
-                                                                                FlutterFlowTheme.tertiaryColor,
+                                                                                FlutterFlowTheme.of(context).tertiaryColor,
                                                                             dense:
                                                                                 true,
                                                                           ),
@@ -840,23 +843,23 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                             title:
                                                                                 Text(
                                                                               '${dateTimeFormat('MMMMEEEEd', widget.jobStatus.createdTime)} at ${dateTimeFormat('jm', widget.jobStatus.createdTime)}',
-                                                                              style: FlutterFlowTheme.title3.override(
-                                                                                fontFamily: 'Roboto',
-                                                                                fontSize: 18,
-                                                                                fontWeight: FontWeight.w600,
-                                                                              ),
+                                                                              style: FlutterFlowTheme.of(context).title3.override(
+                                                                                    fontFamily: 'Roboto',
+                                                                                    fontSize: 18,
+                                                                                    fontWeight: FontWeight.w600,
+                                                                                  ),
                                                                             ),
                                                                             subtitle:
                                                                                 Text(
                                                                               dateTimeFormat('relative', widget.jobStatus.createdTime),
-                                                                              style: FlutterFlowTheme.subtitle2.override(
-                                                                                fontFamily: 'Roboto',
-                                                                                fontSize: 16,
-                                                                                fontWeight: FontWeight.normal,
-                                                                              ),
+                                                                              style: FlutterFlowTheme.of(context).subtitle2.override(
+                                                                                    fontFamily: 'Roboto',
+                                                                                    fontSize: 16,
+                                                                                    fontWeight: FontWeight.normal,
+                                                                                  ),
                                                                             ),
                                                                             tileColor:
-                                                                                FlutterFlowTheme.tertiaryColor,
+                                                                                FlutterFlowTheme.of(context).tertiaryColor,
                                                                             dense:
                                                                                 true,
                                                                           ),
@@ -877,21 +880,21 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                             title:
                                                                                 Text(
                                                                               'Assigned to',
-                                                                              style: FlutterFlowTheme.subtitle1.override(
-                                                                                fontFamily: 'Roboto',
-                                                                                fontSize: 18,
-                                                                              ),
+                                                                              style: FlutterFlowTheme.of(context).subtitle1.override(
+                                                                                    fontFamily: 'Roboto',
+                                                                                    fontSize: 18,
+                                                                                  ),
                                                                             ),
                                                                             subtitle:
                                                                                 Text(
                                                                               widget.jobStatus.assigned,
-                                                                              style: FlutterFlowTheme.subtitle2.override(
-                                                                                fontFamily: 'Roboto',
-                                                                                fontSize: 16,
-                                                                              ),
+                                                                              style: FlutterFlowTheme.of(context).subtitle2.override(
+                                                                                    fontFamily: 'Roboto',
+                                                                                    fontSize: 16,
+                                                                                  ),
                                                                             ),
                                                                             tileColor:
-                                                                                FlutterFlowTheme.tertiaryColor,
+                                                                                FlutterFlowTheme.of(context).tertiaryColor,
                                                                             dense:
                                                                                 true,
                                                                           ),
@@ -964,10 +967,10 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                             Text(
                                                                               'No results were found from your seaech.\nPlease try again.',
                                                                               textAlign: TextAlign.center,
-                                                                              style: FlutterFlowTheme.bodyText1.override(
-                                                                                fontFamily: 'Roboto',
-                                                                                color: Color(0xFF9E9E9E),
-                                                                              ),
+                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                    fontFamily: 'Roboto',
+                                                                                    color: Color(0xFF9E9E9E),
+                                                                                  ),
                                                                             ),
                                                                           ],
                                                                         ),

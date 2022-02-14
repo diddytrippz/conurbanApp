@@ -69,7 +69,7 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
   @override
   Widget build(BuildContext context) => _loading
       ? Container(
-          color: FlutterFlowTheme.mellow,
+          color: FlutterFlowTheme.of(context).mellow,
           child: Center(
             child: Builder(
               builder: (context) => Image.asset(
@@ -98,8 +98,8 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
         chatRef: getParameter(data, 'chatRef'),
       ),
   'MessagesPage': (data) async => NavBarPage(initialPage: 'MessagesPageWidget'),
-  'verify': (data) async => VerifyWidget(),
   'members': (data) async => NavBarPage(initialPage: 'MembersWidget'),
+  'verify': (data) async => VerifyWidget(),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>

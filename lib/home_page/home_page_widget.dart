@@ -27,7 +27,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           await Navigator.push(
@@ -40,11 +40,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             ),
           );
         },
-        backgroundColor: FlutterFlowTheme.primaryColor,
+        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
         elevation: 8,
         child: Icon(
           Icons.edit_outlined,
-          color: FlutterFlowTheme.tertiaryColor,
+          color: FlutterFlowTheme.of(context).tertiaryColor,
           size: 24,
         ),
       ),
@@ -58,7 +58,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height * 1,
                 decoration: BoxDecoration(
-                  color: FlutterFlowTheme.tertiaryColor,
+                  color: FlutterFlowTheme.of(context).tertiaryColor,
                 ),
                 child: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
@@ -71,7 +71,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           width: MediaQuery.of(context).size.width,
                           height: MediaQuery.of(context).size.height * 1,
                           decoration: BoxDecoration(
-                            color: FlutterFlowTheme.tertiaryColor,
+                            color: FlutterFlowTheme.of(context).tertiaryColor,
                           ),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -84,7 +84,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     height: MediaQuery.of(context).size.height *
                                         0.15,
                                     decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.tertiaryColor,
+                                      color: FlutterFlowTheme.of(context)
+                                          .tertiaryColor,
                                     ),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
@@ -113,20 +114,25 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     lineWidth: 15,
                                                     animation: true,
                                                     progressColor:
-                                                        FlutterFlowTheme
+                                                        FlutterFlowTheme.of(
+                                                                context)
                                                             .campusRed,
                                                     backgroundColor:
                                                         Color(0xFFF1F4F8),
                                                     center: Text(
                                                       'Tasks ',
-                                                      style: FlutterFlowTheme
-                                                          .bodyText1
-                                                          .override(
-                                                        fontFamily: 'Roboto',
-                                                        color: FlutterFlowTheme
-                                                            .primaryColor,
-                                                        fontSize: 10,
-                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Roboto',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryColor,
+                                                                fontSize: 10,
+                                                              ),
                                                     ),
                                                     startAngle: 360),
                                                 Wrap(
@@ -150,17 +156,21 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   0, 8, 0, 0),
                                                       child: Text(
                                                         'Completed',
-                                                        style: FlutterFlowTheme
-                                                            .title1
-                                                            .override(
-                                                          fontFamily: 'Roboto',
-                                                          color:
-                                                              FlutterFlowTheme
-                                                                  .campusGrey,
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .title1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Roboto',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .campusGrey,
+                                                                  fontSize: 14,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                ),
                                                       ),
                                                     ),
                                                   ],
@@ -185,12 +195,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   child: Text(
                                                     dateTimeFormat('MMMMEEEEd',
                                                         getCurrentTimestamp),
-                                                    style: FlutterFlowTheme
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .subtitle1
                                                         .override(
-                                                      fontFamily: 'Roboto',
-                                                      fontSize: 14,
-                                                    ),
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 14,
+                                                        ),
                                                   ),
                                                 ),
                                                 Padding(
@@ -199,12 +210,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   child: Text(
                                                     dateTimeFormat('jm',
                                                         getCurrentTimestamp),
-                                                    style: FlutterFlowTheme
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .subtitle1
                                                         .override(
-                                                      fontFamily: 'Roboto',
-                                                      fontSize: 14,
-                                                    ),
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 14,
+                                                        ),
                                                   ),
                                                 ),
                                               ],
@@ -233,12 +245,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               MediaQuery.of(context).size.width,
                                           height: 80,
                                           decoration: BoxDecoration(
-                                            color:
-                                                FlutterFlowTheme.tertiaryColor,
+                                            color: FlutterFlowTheme.of(context)
+                                                .tertiaryColor,
                                           ),
                                           child: FlutterFlowChoiceChips(
-                                            initialOption: choiceChipsValue ??=
-                                                '49 Jorissen',
+                                            initiallySelected:
+                                                choiceChipsValue != null
+                                                    ? [choiceChipsValue]
+                                                    : ['49 Jorissen'],
                                             options: [
                                               ChipData('49 Jorissen'),
                                               ChipData('80 Jorissen'),
@@ -248,18 +262,19 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               ChipData('Wynton Joy'),
                                               ChipData('Rennie House')
                                             ],
-                                            onChanged: (val) => setState(
-                                                () => choiceChipsValue = val),
+                                            onChanged: (val) => setState(() =>
+                                                choiceChipsValue = val.first),
                                             selectedChipStyle: ChipStyle(
                                               backgroundColor:
                                                   Color(0xFF262D34),
-                                              textStyle: FlutterFlowTheme
-                                                  .bodyText1
-                                                  .override(
-                                                fontFamily: 'Roboto',
-                                                color: Colors.white,
-                                                fontSize: 14,
-                                              ),
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily: 'Roboto',
+                                                        color: Colors.white,
+                                                        fontSize: 14,
+                                                      ),
                                               iconColor: Colors.white,
                                               iconSize: 0,
                                               labelPadding:
@@ -269,12 +284,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             ),
                                             unselectedChipStyle: ChipStyle(
                                               backgroundColor: Colors.white,
-                                              textStyle: FlutterFlowTheme
-                                                  .bodyText2
-                                                  .override(
-                                                fontFamily: 'Roboto',
-                                                color: Color(0xFF262D34),
-                                              ),
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText2
+                                                      .override(
+                                                        fontFamily: 'Roboto',
+                                                        color:
+                                                            Color(0xFF262D34),
+                                                      ),
                                               iconColor: Color(0xFF262D34),
                                               iconSize: 18,
                                               labelPadding:
@@ -283,6 +300,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               elevation: 4,
                                             ),
                                             chipSpacing: 18,
+                                            multiselect: false,
                                           ),
                                         ),
                                       ],
@@ -303,13 +321,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           children: [
                                             TabBar(
                                               labelColor:
-                                                  FlutterFlowTheme.primaryColor,
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryColor,
                                               unselectedLabelColor:
                                                   Color(0xFF6E6E6E),
                                               labelStyle:
-                                                  FlutterFlowTheme.bodyText1,
-                                              indicatorColor: FlutterFlowTheme
-                                                  .secondaryColor,
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1,
+                                              indicatorColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryColor,
                                               tabs: [
                                                 Tab(
                                                   text: 'Submitted',
@@ -343,9 +364,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           children: [
                                                             Text(
                                                               'Search results',
-                                                              style:
-                                                                  FlutterFlowTheme
-                                                                      .bodyText2,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText2,
                                                             ),
                                                           ],
                                                         ),
@@ -391,7 +412,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     height: 60,
                                                                     child:
                                                                         SpinKitPulse(
-                                                                      color: FlutterFlowTheme
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
                                                                           .primaryColor,
                                                                       size: 60,
                                                                     ),
@@ -463,7 +485,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           caption:
                                                                               'Complete',
                                                                           color:
-                                                                              FlutterFlowTheme.campusRed,
+                                                                              FlutterFlowTheme.of(context).campusRed,
                                                                           icon:
                                                                               Icons.library_add_check,
                                                                           onTap:
@@ -479,11 +501,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                                 content: Text(
                                                                                   'Status has been changed successfully',
                                                                                   style: TextStyle(
-                                                                                    color: FlutterFlowTheme.tertiaryColor,
+                                                                                    color: FlutterFlowTheme.of(context).tertiaryColor,
                                                                                   ),
                                                                                 ),
                                                                                 duration: Duration(milliseconds: 4000),
-                                                                                backgroundColor: FlutterFlowTheme.campusGrey,
+                                                                                backgroundColor: FlutterFlowTheme.of(context).campusGrey,
                                                                               ),
                                                                             );
                                                                           },
@@ -495,23 +517,20 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                             Text(
                                                                           listViewMaintenanceRecord
                                                                               .issue,
-                                                                          style: FlutterFlowTheme
+                                                                          style: FlutterFlowTheme.of(context)
                                                                               .title3
                                                                               .override(
-                                                                            fontFamily:
-                                                                                'Roboto',
-                                                                            fontSize:
-                                                                                18,
-                                                                            fontWeight:
-                                                                                FontWeight.normal,
-                                                                          ),
+                                                                                fontFamily: 'Roboto',
+                                                                                fontSize: 18,
+                                                                                fontWeight: FontWeight.normal,
+                                                                              ),
                                                                         ),
                                                                         subtitle:
                                                                             Text(
                                                                           listViewMaintenanceRecord
                                                                               .room,
                                                                           style:
-                                                                              FlutterFlowTheme.subtitle2,
+                                                                              FlutterFlowTheme.of(context).subtitle2,
                                                                         ),
                                                                         trailing:
                                                                             Icon(
@@ -555,9 +574,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           children: [
                                                             Text(
                                                               'Search results',
-                                                              style:
-                                                                  FlutterFlowTheme
-                                                                      .bodyText2,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText2,
                                                             ),
                                                           ],
                                                         ),
@@ -603,7 +622,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     height: 60,
                                                                     child:
                                                                         SpinKitPulse(
-                                                                      color: FlutterFlowTheme
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
                                                                           .primaryColor,
                                                                       size: 60,
                                                                     ),
@@ -672,22 +692,19 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           Text(
                                                                         listViewMaintenanceRecord
                                                                             .issue,
-                                                                        style: FlutterFlowTheme
+                                                                        style: FlutterFlowTheme.of(context)
                                                                             .title3
                                                                             .override(
-                                                                          fontFamily:
-                                                                              'Roboto',
-                                                                          fontSize:
-                                                                              18,
-                                                                          fontWeight:
-                                                                              FontWeight.normal,
-                                                                        ),
+                                                                              fontFamily: 'Roboto',
+                                                                              fontSize: 18,
+                                                                              fontWeight: FontWeight.normal,
+                                                                            ),
                                                                       ),
                                                                       subtitle:
                                                                           Text(
                                                                         listViewMaintenanceRecord
                                                                             .room,
-                                                                        style: FlutterFlowTheme
+                                                                        style: FlutterFlowTheme.of(context)
                                                                             .subtitle2,
                                                                       ),
                                                                       tileColor:
@@ -720,9 +737,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           children: [
                                                             Text(
                                                               'Search results',
-                                                              style:
-                                                                  FlutterFlowTheme
-                                                                      .bodyText2,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText2,
                                                             ),
                                                           ],
                                                         ),
@@ -764,7 +781,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     height: 60,
                                                                     child:
                                                                         SpinKitPulse(
-                                                                      color: FlutterFlowTheme
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
                                                                           .primaryColor,
                                                                       size: 60,
                                                                     ),
@@ -806,68 +824,86 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   final listViewMaintenanceRecord =
                                                                       listViewMaintenanceRecordList[
                                                                           listViewIndex];
-                                                                  return Slidable(
-                                                                    actionPane:
-                                                                        const SlidableScrollActionPane(),
-                                                                    secondaryActions: [
-                                                                      IconSlideAction(
-                                                                        caption:
-                                                                            'Close',
-                                                                        color: FlutterFlowTheme
-                                                                            .primaryColor,
-                                                                        icon: Icons
-                                                                            .auto_awesome_motion,
-                                                                        onTap:
-                                                                            () async {
-                                                                          if ((currentUserEmail) ==
-                                                                              'frans@conurban.co.za') {
-                                                                            final maintenanceUpdateData =
-                                                                                createMaintenanceRecordData(
-                                                                              status: 'Closed',
-                                                                            );
-                                                                            await listViewMaintenanceRecord.reference.update(maintenanceUpdateData);
-                                                                          }
-                                                                        },
-                                                                      ),
-                                                                    ],
-                                                                    child:
-                                                                        ListTile(
-                                                                      title:
-                                                                          Text(
-                                                                        listViewMaintenanceRecord
-                                                                            .issue,
-                                                                        style: FlutterFlowTheme
-                                                                            .title3
-                                                                            .override(
-                                                                          fontFamily:
-                                                                              'Roboto',
-                                                                          fontSize:
-                                                                              18,
-                                                                          fontWeight:
-                                                                              FontWeight.normal,
+                                                                  return InkWell(
+                                                                    onTap:
+                                                                        () async {
+                                                                      await Navigator
+                                                                          .push(
+                                                                        context,
+                                                                        PageTransition(
+                                                                          type:
+                                                                              PageTransitionType.bottomToTop,
+                                                                          duration:
+                                                                              Duration(milliseconds: 300),
+                                                                          reverseDuration:
+                                                                              Duration(milliseconds: 300),
+                                                                          child:
+                                                                              MoreInfoWidget(
+                                                                            jobStatus:
+                                                                                listViewMaintenanceRecord,
+                                                                          ),
                                                                         ),
+                                                                      );
+                                                                    },
+                                                                    child:
+                                                                        Slidable(
+                                                                      actionPane:
+                                                                          const SlidableScrollActionPane(),
+                                                                      secondaryActions: [
+                                                                        IconSlideAction(
+                                                                          caption:
+                                                                              'Close',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primaryColor,
+                                                                          icon:
+                                                                              Icons.auto_awesome_motion,
+                                                                          onTap:
+                                                                              () async {
+                                                                            if ((currentUserEmail) ==
+                                                                                'frans@conurban.co.za') {
+                                                                              final maintenanceUpdateData = createMaintenanceRecordData(
+                                                                                status: 'Closed',
+                                                                              );
+                                                                              await listViewMaintenanceRecord.reference.update(maintenanceUpdateData);
+                                                                            }
+                                                                          },
+                                                                        ),
+                                                                      ],
+                                                                      child:
+                                                                          ListTile(
+                                                                        title:
+                                                                            Text(
+                                                                          listViewMaintenanceRecord
+                                                                              .issue,
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .title3
+                                                                              .override(
+                                                                                fontFamily: 'Roboto',
+                                                                                fontSize: 18,
+                                                                                fontWeight: FontWeight.normal,
+                                                                              ),
+                                                                        ),
+                                                                        subtitle:
+                                                                            Text(
+                                                                          listViewMaintenanceRecord
+                                                                              .room,
+                                                                          style:
+                                                                              FlutterFlowTheme.of(context).subtitle2,
+                                                                        ),
+                                                                        trailing:
+                                                                            Icon(
+                                                                          Icons
+                                                                              .arrow_forward_ios,
+                                                                          color:
+                                                                              Color(0xFF303030),
+                                                                          size:
+                                                                              20,
+                                                                        ),
+                                                                        tileColor:
+                                                                            Color(0xFFF5F5F5),
+                                                                        dense:
+                                                                            false,
                                                                       ),
-                                                                      subtitle:
-                                                                          Text(
-                                                                        listViewMaintenanceRecord
-                                                                            .room,
-                                                                        style: FlutterFlowTheme
-                                                                            .subtitle2,
-                                                                      ),
-                                                                      trailing:
-                                                                          Icon(
-                                                                        Icons
-                                                                            .arrow_forward_ios,
-                                                                        color: Color(
-                                                                            0xFF303030),
-                                                                        size:
-                                                                            20,
-                                                                      ),
-                                                                      tileColor:
-                                                                          Color(
-                                                                              0xFFF5F5F5),
-                                                                      dense:
-                                                                          false,
                                                                     ),
                                                                   );
                                                                 },

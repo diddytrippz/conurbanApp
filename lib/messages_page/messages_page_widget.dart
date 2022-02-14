@@ -79,16 +79,16 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                     ),
                   ),
                 ),
-                style: FlutterFlowTheme.bodyText1,
+                style: FlutterFlowTheme.of(context).bodyText1,
                 keyboardType: TextInputType.name,
               ),
             if (FFAppState().isPressed ?? true)
               Text(
                 'Inbox',
-                style: FlutterFlowTheme.title3.override(
-                  fontFamily: 'Roboto',
-                  fontSize: 18,
-                ),
+                style: FlutterFlowTheme.of(context).title3.override(
+                      fontFamily: 'Roboto',
+                      fontSize: 18,
+                    ),
               ),
           ],
         ),
@@ -96,7 +96,7 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
         centerTitle: false,
         elevation: 2,
       ),
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -116,7 +116,7 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                       width: 60,
                       height: 60,
                       child: SpinKitPulse(
-                        color: FlutterFlowTheme.primaryColor,
+                        color: FlutterFlowTheme.of(context).primaryColor,
                         size: 60,
                       ),
                     ),
@@ -168,7 +168,7 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                                 .contains(currentUserReference),
                             title: chatInfo.chatPreviewTitle(),
                             userProfilePic: chatInfo.chatPreviewPic(),
-                            color: FlutterFlowTheme.tertiaryColor,
+                            color: FlutterFlowTheme.of(context).tertiaryColor,
                             unreadColor: Color(0xFF1785BF),
                             titleTextStyle: GoogleFonts.getFont(
                               'Roboto',

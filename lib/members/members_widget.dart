@@ -23,15 +23,15 @@ class _MembersWidgetState extends State<MembersWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.tertiaryColor,
+        backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
         automaticallyImplyLeading: false,
         title: Text(
           'Team members',
-          style: FlutterFlowTheme.title1.override(
-            fontFamily: 'Roboto',
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
+          style: FlutterFlowTheme.of(context).title1.override(
+                fontFamily: 'Roboto',
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
         ),
         actions: [
           Padding(
@@ -46,7 +46,7 @@ class _MembersWidgetState extends State<MembersWidget> {
         centerTitle: false,
         elevation: 4,
       ),
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -66,7 +66,7 @@ class _MembersWidgetState extends State<MembersWidget> {
                       width: 60,
                       height: 60,
                       child: SpinKitPulse(
-                        color: FlutterFlowTheme.primaryColor,
+                        color: FlutterFlowTheme.of(context).primaryColor,
                         size: 60,
                       ),
                     ),
@@ -83,7 +83,7 @@ class _MembersWidgetState extends State<MembersWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                       child: Card(
                         clipBehavior: Clip.antiAliasWithSaveLayer,
-                        color: FlutterFlowTheme.tertiaryColor,
+                        color: FlutterFlowTheme.of(context).tertiaryColor,
                         elevation: 3,
                         child: InkWell(
                           onTap: () async {
@@ -139,19 +139,21 @@ class _MembersWidgetState extends State<MembersWidget> {
                                                   AutoSizeText(
                                                     columnUsersRecord
                                                         .displayName,
-                                                    style: FlutterFlowTheme
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .title2
                                                         .override(
-                                                      fontFamily: 'Roboto',
-                                                      fontSize: 16,
-                                                    ),
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 16,
+                                                        ),
                                                   ),
                                                 ],
                                               ),
                                               Text(
                                                 'Maintenance',
                                                 style:
-                                                    FlutterFlowTheme.bodyText1,
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1,
                                               ),
                                             ],
                                           ),
@@ -171,7 +173,8 @@ class _MembersWidgetState extends State<MembersWidget> {
                                   children: [
                                     Text(
                                       'Avg. Rating',
-                                      style: FlutterFlowTheme.bodyText1,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1,
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
@@ -183,11 +186,12 @@ class _MembersWidgetState extends State<MembersWidget> {
                                         children: [
                                           Text(
                                             '5.0',
-                                            style: FlutterFlowTheme.bodyText1
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
                                                 .override(
-                                              fontFamily: 'Roboto',
-                                              fontSize: 18,
-                                            ),
+                                                  fontFamily: 'Roboto',
+                                                  fontSize: 18,
+                                                ),
                                           ),
                                           Padding(
                                             padding:

@@ -78,22 +78,22 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
             if (!(isGroupChat()) ?? true)
               Text(
                 widget.chatUser.displayName,
-                style: FlutterFlowTheme.bodyText1.override(
-                  fontFamily: 'Lexend Deca',
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: FlutterFlowTheme.of(context).bodyText1.override(
+                      fontFamily: 'Lexend Deca',
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
               ),
             if (isGroupChat() ?? true)
               Text(
                 'Group Chat',
-                style: FlutterFlowTheme.bodyText1.override(
-                  fontFamily: 'Lexend Deca',
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: FlutterFlowTheme.of(context).bodyText1.override(
+                      fontFamily: 'Lexend Deca',
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
               ),
           ],
         ),
@@ -110,7 +110,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
         centerTitle: true,
         elevation: 2,
       ),
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       body: SafeArea(
         child: StreamBuilder<FFChatInfo>(
           stream: FFChatManager.instance.getChatInfo(
@@ -121,7 +121,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
               ? FFChatPage(
                   chatInfo: snapshot.data,
                   allowImages: true,
-                  backgroundColor: FlutterFlowTheme.tertiaryColor,
+                  backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
                   timeDisplaySetting: TimeDisplaySetting.alwaysVisible,
                   currentUserBoxDecoration: BoxDecoration(
                     color: Color(0xFFDCF8C6),
@@ -131,7 +131,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                     borderRadius: BorderRadius.circular(15),
                   ),
                   otherUsersBoxDecoration: BoxDecoration(
-                    color: FlutterFlowTheme.tertiaryColor,
+                    color: FlutterFlowTheme.of(context).tertiaryColor,
                     border: Border.all(
                       color: Colors.transparent,
                     ),
@@ -139,7 +139,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                   ),
                   currentUserTextStyle: GoogleFonts.getFont(
                     'Roboto',
-                    color: FlutterFlowTheme.campusGrey,
+                    color: FlutterFlowTheme.of(context).campusGrey,
                     fontWeight: FontWeight.normal,
                     fontSize: 14,
                     fontStyle: FontStyle.normal,
@@ -166,12 +166,12 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                     child: EmptyInboxWidget(),
                   ),
                 )
-              : const Center(
+              : Center(
                   child: SizedBox(
                     width: 60,
                     height: 60,
                     child: SpinKitPulse(
-                      color: FlutterFlowTheme.primaryColor,
+                      color: FlutterFlowTheme.of(context).primaryColor,
                       size: 60,
                     ),
                   ),

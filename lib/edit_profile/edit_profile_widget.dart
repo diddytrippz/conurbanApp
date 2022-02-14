@@ -39,7 +39,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.tertiaryColor,
+        backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
         iconTheme: IconThemeData(color: Colors.black),
         automaticallyImplyLeading: false,
         leading: InkWell(
@@ -62,16 +62,16 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
         ),
         title: Text(
           'EDIT PROFILE',
-          style: FlutterFlowTheme.title1.override(
-            fontFamily: 'Roboto',
-            fontSize: 16,
-          ),
+          style: FlutterFlowTheme.of(context).title1.override(
+                fontFamily: 'Roboto',
+                fontSize: 16,
+              ),
         ),
         actions: [],
         centerTitle: true,
         elevation: 4,
       ),
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -94,7 +94,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                               width: 150,
                               height: 150,
                               decoration: BoxDecoration(
-                                color: FlutterFlowTheme.campusRed,
+                                color: FlutterFlowTheme.of(context).campusRed,
                                 shape: BoxShape.circle,
                               ),
                               child: AuthUserStreamWidget(
@@ -151,14 +151,17 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(110, 80, 0, 0),
                               child: FlutterFlowIconButton(
-                                borderColor: FlutterFlowTheme.tertiaryColor,
+                                borderColor:
+                                    FlutterFlowTheme.of(context).tertiaryColor,
                                 borderRadius: 30,
                                 borderWidth: 2,
                                 buttonSize: 50,
-                                fillColor: FlutterFlowTheme.secondaryColor,
+                                fillColor:
+                                    FlutterFlowTheme.of(context).secondaryColor,
                                 icon: Icon(
                                   Icons.edit_outlined,
-                                  color: FlutterFlowTheme.tertiaryColor,
+                                  color: FlutterFlowTheme.of(context)
+                                      .tertiaryColor,
                                   size: 30,
                                 ),
                                 onPressed: () async {
@@ -234,7 +237,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   Icons.person_outline_sharp,
                                 ),
                               ),
-                              style: FlutterFlowTheme.bodyText1,
+                              style: FlutterFlowTheme.of(context).bodyText1,
                             ),
                           ),
                         ),
@@ -271,7 +274,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 Icons.mail_outline_rounded,
                               ),
                             ),
-                            style: FlutterFlowTheme.bodyText1,
+                            style: FlutterFlowTheme.of(context).bodyText1,
                           ),
                         ),
                       ],
@@ -295,11 +298,13 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                             content: Text(
                               'Image successfully uploaded',
                               style: TextStyle(
-                                color: FlutterFlowTheme.tertiaryColor,
+                                color:
+                                    FlutterFlowTheme.of(context).tertiaryColor,
                               ),
                             ),
                             duration: Duration(milliseconds: 4000),
-                            backgroundColor: FlutterFlowTheme.campusGrey,
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).campusGrey,
                           ),
                         );
                         await Navigator.push(
@@ -316,11 +321,12 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                       options: FFButtonOptions(
                         width: double.infinity,
                         height: 55,
-                        color: FlutterFlowTheme.secondaryColor,
-                        textStyle: FlutterFlowTheme.subtitle2.override(
-                          fontFamily: 'Roboto',
-                          color: Colors.white,
-                        ),
+                        color: FlutterFlowTheme.of(context).secondaryColor,
+                        textStyle:
+                            FlutterFlowTheme.of(context).subtitle2.override(
+                                  fontFamily: 'Roboto',
+                                  color: Colors.white,
+                                ),
                         borderSide: BorderSide(
                           color: Colors.transparent,
                           width: 1,

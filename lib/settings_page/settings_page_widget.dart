@@ -30,7 +30,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
       key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: Color(0xFFFFFEFE),
-        iconTheme: IconThemeData(color: FlutterFlowTheme.campusGrey),
+        iconTheme:
+            IconThemeData(color: FlutterFlowTheme.of(context).campusGrey),
         automaticallyImplyLeading: false,
         leading: InkWell(
           onTap: () async {
@@ -44,11 +45,11 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
         ),
         title: Text(
           'Settings',
-          style: FlutterFlowTheme.title3.override(
-            fontFamily: 'Roboto',
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
+          style: FlutterFlowTheme.of(context).title3.override(
+                fontFamily: 'Roboto',
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
         ),
         actions: [],
         centerTitle: false,
@@ -60,7 +61,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
           width: double.infinity,
           height: double.infinity,
           decoration: BoxDecoration(
-            color: FlutterFlowTheme.tertiaryColor,
+            color: FlutterFlowTheme.of(context).tertiaryColor,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.max,
@@ -112,7 +113,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                       width: 60,
                                       height: 60,
                                       child: SpinKitPulse(
-                                        color: FlutterFlowTheme.primaryColor,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
                                         size: 60,
                                       ),
                                     ),
@@ -231,12 +233,15 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                             child: AuthUserStreamWidget(
                                               child: Text(
                                                 currentUserDisplayName,
-                                                style: FlutterFlowTheme.title1
-                                                    .override(
-                                                  fontFamily: 'Roboto',
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .title1
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          fontSize: 20,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
                                               ),
                                             ),
                                           ),
@@ -254,11 +259,12 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                                   0, 12, 0, 14),
                                           child: Text(
                                             currentUserEmail,
-                                            style: FlutterFlowTheme.subtitle1
+                                            style: FlutterFlowTheme.of(context)
+                                                .subtitle1
                                                 .override(
-                                              fontFamily: 'Roboto',
-                                              fontWeight: FontWeight.bold,
-                                            ),
+                                                  fontFamily: 'Roboto',
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                           ),
                                         ),
                                       ],
@@ -292,10 +298,10 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         ),
                         title: Text(
                           'Profile',
-                          style: FlutterFlowTheme.title3.override(
-                            fontFamily: 'Roboto',
-                            fontSize: 16,
-                          ),
+                          style: FlutterFlowTheme.of(context).title3.override(
+                                fontFamily: 'Roboto',
+                                fontSize: 16,
+                              ),
                         ),
                         tileColor: Color(0x00F5F5F5),
                         dense: false,
@@ -322,10 +328,10 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         ),
                         title: Text(
                           'Messages',
-                          style: FlutterFlowTheme.title3.override(
-                            fontFamily: 'Roboto',
-                            fontSize: 16,
-                          ),
+                          style: FlutterFlowTheme.of(context).title3.override(
+                                fontFamily: 'Roboto',
+                                fontSize: 16,
+                              ),
                         ),
                         tileColor: Color(0x00F5F5F5),
                         dense: false,
@@ -352,10 +358,10 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         ),
                         title: Text(
                           'Mantenance',
-                          style: FlutterFlowTheme.title3.override(
-                            fontFamily: 'Roboto',
-                            fontSize: 16,
-                          ),
+                          style: FlutterFlowTheme.of(context).title3.override(
+                                fontFamily: 'Roboto',
+                                fontSize: 16,
+                              ),
                         ),
                         tileColor: Color(0x00F5F5F5),
                         dense: false,
@@ -384,10 +390,10 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         ),
                         title: Text(
                           'Sign Out',
-                          style: FlutterFlowTheme.title3.override(
-                            fontFamily: 'Roboto',
-                            fontSize: 16,
-                          ),
+                          style: FlutterFlowTheme.of(context).title3.override(
+                                fontFamily: 'Roboto',
+                                fontSize: 16,
+                              ),
                         ),
                         tileColor: Color(0x00F5F5F5),
                         dense: false,
@@ -403,11 +409,11 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   children: [
                     Text(
                       'VERSION 1.0.1',
-                      style: FlutterFlowTheme.bodyText1.override(
-                        fontFamily: 'Roboto',
-                        fontSize: 12,
-                        fontWeight: FontWeight.normal,
-                      ),
+                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                            fontFamily: 'Roboto',
+                            fontSize: 12,
+                            fontWeight: FontWeight.normal,
+                          ),
                     ),
                   ],
                 ),
@@ -432,12 +438,13 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(24, 12, 0, 12),
                         child: Text(
                           'ACCOUNT',
-                          style: FlutterFlowTheme.bodyText1.override(
-                            fontFamily: 'Roboto',
-                            color: Color(0xFF9E9E9E),
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyText1.override(
+                                    fontFamily: 'Roboto',
+                                    color: Color(0xFF9E9E9E),
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                         ),
                       ),
                     ],
@@ -483,7 +490,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                                 child: Text(
                                   'My account',
-                                  style: FlutterFlowTheme.bodyText1,
+                                  style: FlutterFlowTheme.of(context).bodyText1,
                                 ),
                               ),
                               Expanded(
@@ -543,7 +550,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                                 child: Text(
                                   'Messages',
-                                  style: FlutterFlowTheme.bodyText1,
+                                  style: FlutterFlowTheme.of(context).bodyText1,
                                 ),
                               ),
                               Expanded(
@@ -603,7 +610,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                                 child: Text(
                                   'Team members',
-                                  style: FlutterFlowTheme.bodyText1,
+                                  style: FlutterFlowTheme.of(context).bodyText1,
                                 ),
                               ),
                               Expanded(
@@ -649,7 +656,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                 EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                             child: Text(
                               'Dark Mode',
-                              style: FlutterFlowTheme.bodyText1,
+                              style: FlutterFlowTheme.of(context).bodyText1,
                             ),
                           ),
                           Expanded(
@@ -675,12 +682,12 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(24, 14, 0, 14),
                     child: Text(
                       'LEGAL',
-                      style: FlutterFlowTheme.bodyText1.override(
-                        fontFamily: 'Roboto',
-                        color: Color(0xFF9E9E9E),
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                            fontFamily: 'Roboto',
+                            color: Color(0xFF9E9E9E),
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
                     ),
                   ),
                 ],
@@ -712,7 +719,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                   EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                               child: Text(
                                 'Copyright policy',
-                                style: FlutterFlowTheme.bodyText1,
+                                style: FlutterFlowTheme.of(context).bodyText1,
                               ),
                             ),
                             Expanded(
@@ -763,7 +770,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                                 child: Text(
                                   'About us',
-                                  style: FlutterFlowTheme.bodyText1,
+                                  style: FlutterFlowTheme.of(context).bodyText1,
                                 ),
                               ),
                               Expanded(
@@ -811,10 +818,13 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                           width: 90,
                           height: 40,
                           color: Colors.white,
-                          textStyle: FlutterFlowTheme.bodyText2.override(
-                            fontFamily: 'Roboto',
-                            color: FlutterFlowTheme.primaryColor,
-                          ),
+                          textStyle: FlutterFlowTheme.of(context)
+                              .bodyText2
+                              .override(
+                                fontFamily: 'Roboto',
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                              ),
                           elevation: 3,
                           borderSide: BorderSide(
                             color: Colors.transparent,
