@@ -15,27 +15,29 @@ class EmptyInboxWidget extends StatefulWidget {
 class _EmptyInboxWidgetState extends State<EmptyInboxWidget> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0, 150, 0, 0),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Lottie.network(
-                'https://assets9.lottiefiles.com/packages/lf20_vjnds77f.json',
-                width: 150,
-                height: 130,
-                fit: BoxFit.cover,
-                repeat: false,
-                animate: true,
-              ),
-            ],
+    return Padding(
+      padding: EdgeInsetsDirectional.fromSTEB(16, 30, 16, 30),
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Expanded(
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Lottie.network(
+                  'https://assets9.lottiefiles.com/packages/lf20_vjnds77f.json',
+                  width: 150,
+                  height: 130,
+                  fit: BoxFit.cover,
+                  repeat: false,
+                  animate: true,
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
