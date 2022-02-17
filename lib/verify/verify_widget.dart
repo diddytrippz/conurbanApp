@@ -72,7 +72,8 @@ class _VerifyWidgetState extends State<VerifyWidget> {
                 controller: phoneNumberController,
                 obscureText: false,
                 decoration: InputDecoration(
-                  hintText: 'Email ',
+                  labelText: 'Enter the 6 digit code',
+                  hintText: '000000',
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Color(0x00000000),

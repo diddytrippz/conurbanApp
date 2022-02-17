@@ -171,17 +171,24 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     children: [
-                                                      InkWell(
-                                                        onTap: () async {
+                                                      FlutterFlowIconButton(
+                                                        borderColor:
+                                                            Colors.transparent,
+                                                        borderRadius: 30,
+                                                        borderWidth: 1,
+                                                        buttonSize: 45,
+                                                        fillColor:
+                                                            Color(0xF4EDEDED),
+                                                        icon: Icon(
+                                                          Icons
+                                                              .arrow_back_sharp,
+                                                          color: Colors.black,
+                                                          size: 25,
+                                                        ),
+                                                        onPressed: () async {
                                                           Navigator.pop(
                                                               context);
                                                         },
-                                                        child: Icon(
-                                                          Icons.cancel,
-                                                          color:
-                                                              Color(0xE4FFFFFF),
-                                                          size: 50,
-                                                        ),
                                                       ),
                                                     ],
                                                   ),
@@ -512,7 +519,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                               mainAxisAlignment: MainAxisAlignment.start,
                                                                               children: [
                                                                                 Container(
-                                                                                  height: 80,
+                                                                                  height: 90,
                                                                                   constraints: BoxConstraints(
                                                                                     maxHeight: 32,
                                                                                   ),
@@ -552,7 +559,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
                                                                                   child: Container(
-                                                                                    height: 80,
+                                                                                    height: 90,
                                                                                     constraints: BoxConstraints(
                                                                                       maxHeight: 32,
                                                                                     ),
@@ -607,7 +614,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                               mainAxisAlignment: MainAxisAlignment.start,
                                                                               children: [
                                                                                 Container(
-                                                                                  height: 80,
+                                                                                  height: 90,
                                                                                   constraints: BoxConstraints(
                                                                                     maxHeight: 32,
                                                                                   ),
@@ -647,7 +654,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
                                                                                   child: Container(
-                                                                                    height: 80,
+                                                                                    height: 90,
                                                                                     constraints: BoxConstraints(
                                                                                       maxHeight: 32,
                                                                                     ),
