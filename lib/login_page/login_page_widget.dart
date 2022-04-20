@@ -104,7 +104,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .title1
                                       .override(
-                                        fontFamily: 'Lexend Deca',
+                                        fontFamily: 'Open Sans',
                                         color: Color(0xFF090F13),
                                         fontSize: 24,
                                         fontWeight: FontWeight.bold,
@@ -167,7 +167,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
                                       .override(
-                                        fontFamily: 'Lexend Deca',
+                                        fontFamily: 'Open Sans',
                                         color: Color(0xFF2B343A),
                                         fontSize: 14,
                                         fontWeight: FontWeight.normal,
@@ -244,7 +244,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
                                       .override(
-                                        fontFamily: 'Lexend Deca',
+                                        fontFamily: 'Open Sans',
                                         color: Color(0xFF2B343A),
                                         fontSize: 14,
                                         fontWeight: FontWeight.normal,

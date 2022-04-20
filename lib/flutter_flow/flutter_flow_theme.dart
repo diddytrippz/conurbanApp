@@ -3,8 +3,31 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
+const kThemeModeKey = '__theme_mode__';
+SharedPreferences _prefs;
+
 abstract class FlutterFlowTheme {
-  static FlutterFlowTheme of(BuildContext context) => LightModeTheme();
+  static Future initialize() async =>
+      _prefs = await SharedPreferences.getInstance();
+  static ThemeMode get themeMode {
+    final darkMode = _prefs?.getBool(kThemeModeKey);
+    return darkMode == null
+        ? ThemeMode.system
+        : darkMode
+            ? ThemeMode.dark
+            : ThemeMode.light;
+  }
+
+  static void saveThemeMode(ThemeMode mode) => mode == ThemeMode.system
+      ? _prefs?.remove(kThemeModeKey)
+      : _prefs?.setBool(kThemeModeKey, mode == ThemeMode.dark);
+
+  static FlutterFlowTheme of(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? DarkModeTheme()
+          : LightModeTheme();
 
   Color primaryColor;
   Color secondaryColor;
@@ -69,15 +92,32 @@ class LightModeTheme extends FlutterFlowTheme {
   Color primaryColor = const Color(0xFFD93A0E);
   Color secondaryColor = const Color(0xFFF1803A);
   Color tertiaryColor = const Color(0xFFFFFFFF);
-  Color alternate = const Color(0x00000000);
-  Color primaryBackground = const Color(0xE1FFFFFF);
-  Color secondaryBackground = const Color(0x00000000);
-  Color primaryText = const Color(0x00000000);
+  Color alternate = const Color(0xEEEEEEEE);
+  Color primaryBackground = const Color(0xFFFFFFFF);
+  Color secondaryBackground = const Color(0xFFF2F2F2);
+  Color primaryText = const Color(0xFF000000);
   Color secondaryText = const Color(0x00000000);
 
   Color campusRed = Color(0xFFD93A0E);
   Color mellow = Color(0xFFFFBA00);
   Color campusMellow = Color(0xFFFEF058);
+  Color zellow = Color(0xFFF0E020);
+  Color campusGrey = Color(0xFF464749);
+}
+
+class DarkModeTheme extends FlutterFlowTheme {
+  Color primaryColor = const Color(0xFF181818);
+  Color secondaryColor = const Color(0xFFF1803A);
+  Color tertiaryColor = const Color(0x00000000);
+  Color alternate = const Color(0x00000000);
+  Color primaryBackground = const Color(0xFF121212);
+  Color secondaryBackground = const Color(0xFF181818);
+  Color primaryText = const Color(0xFFFFFFFF);
+  Color secondaryText = const Color(0x00000000);
+
+  Color campusRed = Color(0xFFD93A0E);
+  Color mellow = Color(0xFF181818);
+  Color campusMellow = Color(0xFF040404);
   Color zellow = Color(0xFFF0E020);
   Color campusGrey = Color(0xFF464749);
 }
@@ -90,6 +130,7 @@ extension TextStyleHelper on TextStyle {
     FontWeight fontWeight,
     FontStyle fontStyle,
     bool useGoogleFonts = true,
+    TextDecoration decoration,
     double lineHeight,
   }) =>
       useGoogleFonts
@@ -99,6 +140,7 @@ extension TextStyleHelper on TextStyle {
               fontSize: fontSize ?? this.fontSize,
               fontWeight: fontWeight ?? this.fontWeight,
               fontStyle: fontStyle ?? this.fontStyle,
+              decoration: decoration,
               height: lineHeight,
             )
           : copyWith(
@@ -107,6 +149,7 @@ extension TextStyleHelper on TextStyle {
               fontSize: fontSize,
               fontWeight: fontWeight,
               fontStyle: fontStyle,
+              decoration: decoration,
               height: lineHeight,
             );
 }

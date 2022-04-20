@@ -1,6 +1,7 @@
 import '../backend/backend.dart';
 import '../components/empty_inbox_widget.dart';
 import '../flutter_flow/chat/index.dart';
+import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -8,6 +9,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 
 class ChatPageWidget extends StatefulWidget {
   const ChatPageWidget({
@@ -57,60 +59,92 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         automaticallyImplyLeading: false,
-        leading: FlutterFlowIconButton(
-          borderColor: Colors.transparent,
-          borderRadius: 30,
-          borderWidth: 1,
-          buttonSize: 60,
-          icon: Icon(
-            Icons.arrow_back_rounded,
-            color: Colors.black,
-            size: 24,
-          ),
-          onPressed: () async {
-            Navigator.pop(context);
-          },
-        ),
-        title: Stack(
+        leading: Row(
+          mainAxisSize: MainAxisSize.max,
           children: [
-            if (!(isGroupChat()) ?? true)
-              Text(
-                widget.chatUser.displayName,
-                style: FlutterFlowTheme.of(context).bodyText1.override(
-                      fontFamily: 'Lexend Deca',
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
+            FlutterFlowIconButton(
+              borderColor: Colors.transparent,
+              borderRadius: 30,
+              borderWidth: 1,
+              buttonSize: 50,
+              icon: Icon(
+                FFIcons.kback,
+                color: FlutterFlowTheme.of(context).primaryText,
+                size: 24,
               ),
-            if (isGroupChat() ?? true)
-              Text(
-                'Group Chat',
-                style: FlutterFlowTheme.of(context).bodyText1.override(
-                      fontFamily: 'Lexend Deca',
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-              ),
+              onPressed: () async {
+                Navigator.pop(context);
+              },
+            ),
           ],
+        ),
+        title: Text(
+          widget.chatUser.displayName,
+          style: FlutterFlowTheme.of(context).bodyText1.override(
+                fontFamily: 'Roboto',
+                color: FlutterFlowTheme.of(context).primaryText,
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+              ),
         ),
         actions: [
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 18, 0),
-            child: Icon(
-              Icons.group_add,
-              color: Colors.black,
-              size: 24,
+            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+            child: InkWell(
+              onTap: () async {
+                await Navigator.push(
+                  context,
+                  PageTransition(
+                    type: PageTransitionType.fade,
+                    child: FlutterFlowExpandedImageView(
+                      image: Image.network(
+                        valueOrDefault<String>(
+                          widget.chatUser.photoUrl,
+                          'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
+                        ),
+                        fit: BoxFit.contain,
+                      ),
+                      allowRotation: false,
+                      tag: valueOrDefault<String>(
+                        widget.chatUser.photoUrl,
+                        'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
+                      ),
+                      useHeroAnimation: true,
+                    ),
+                  ),
+                );
+              },
+              child: Hero(
+                tag: valueOrDefault<String>(
+                  widget.chatUser.photoUrl,
+                  'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
+                ),
+                transitionOnUserGestures: true,
+                child: Container(
+                  width: 40,
+                  height: 40,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                  ),
+                  child: Image.network(
+                    valueOrDefault<String>(
+                      widget.chatUser.photoUrl,
+                      'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
+                    ),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
             ),
           ),
         ],
         centerTitle: true,
         elevation: 2,
       ),
-      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: SafeArea(
         child: StreamBuilder<FFChatInfo>(
           stream: FFChatManager.instance.getChatInfo(
@@ -124,14 +158,14 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                   backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
                   timeDisplaySetting: TimeDisplaySetting.alwaysVisible,
                   currentUserBoxDecoration: BoxDecoration(
-                    color: Color(0xFFDCF8C6),
+                    color: Color(0xFF1785BF),
                     border: Border.all(
                       color: Colors.transparent,
                     ),
                     borderRadius: BorderRadius.circular(15),
                   ),
                   otherUsersBoxDecoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).tertiaryColor,
+                    color: Color(0xFFF6F4F4),
                     border: Border.all(
                       color: Colors.transparent,
                     ),
@@ -139,7 +173,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                   ),
                   currentUserTextStyle: GoogleFonts.getFont(
                     'Roboto',
-                    color: FlutterFlowTheme.of(context).campusGrey,
+                    color: Color(0xFFF7F7F7),
                     fontWeight: FontWeight.normal,
                     fontSize: 14,
                     fontStyle: FontStyle.normal,

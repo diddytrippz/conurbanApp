@@ -21,7 +21,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
@@ -54,7 +54,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 0, 0, 20),
                                     child: Image.asset(
-                                      'assets/images/Consolidated+urban+logo+2018+.png',
+                                      'assets/images/06_COMBINED_ELEMENT.png',
                                       width: 350,
                                       height: 400,
                                       fit: BoxFit.contain,
@@ -73,7 +73,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .title1
                                           .override(
-                                            fontFamily: 'Lexend Deca',
+                                            fontFamily: 'Open Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryColor,
                                             fontSize: 22,
@@ -95,10 +95,12 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .subtitle2
                                             .override(
-                                              fontFamily: 'Lexend Deca',
-                                              color: Colors.black,
+                                              fontFamily: 'Open Sans',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
                                               fontSize: 16,
-                                              fontWeight: FontWeight.w500,
+                                              fontWeight: FontWeight.w600,
                                             ),
                                       ),
                                     ),
@@ -136,12 +138,12 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                           width: 170,
                                           height: 50,
                                           color: FlutterFlowTheme.of(context)
-                                              .mellow,
+                                              .campusRed,
                                           textStyle:
                                               FlutterFlowTheme.of(context)
                                                   .subtitle2
                                                   .override(
-                                                    fontFamily: 'Lexend Deca',
+                                                    fontFamily: 'Open Sans',
                                                     color: Colors.white,
                                                     fontSize: 16,
                                                     fontWeight: FontWeight.w500,

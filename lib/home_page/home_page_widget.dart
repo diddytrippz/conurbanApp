@@ -27,7 +27,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           await Navigator.push(
@@ -44,7 +44,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         elevation: 8,
         child: Icon(
           Icons.edit_outlined,
-          color: FlutterFlowTheme.of(context).tertiaryColor,
+          color: Colors.white,
           size: 24,
         ),
       ),
@@ -109,32 +109,32 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   CrossAxisAlignment.center,
                                               children: [
                                                 CircularPercentIndicator(
-                                                    percent: 0.75,
-                                                    radius: 42.5,
-                                                    lineWidth: 15,
-                                                    animation: true,
-                                                    progressColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .campusRed,
-                                                    backgroundColor:
-                                                        Color(0xFFF1F4F8),
-                                                    center: Text(
-                                                      'Tasks ',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Roboto',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryColor,
-                                                                fontSize: 10,
-                                                              ),
-                                                    ),
-                                                    startAngle: 360),
+                                                  percent: 0.75,
+                                                  radius: 42.5,
+                                                  lineWidth: 15,
+                                                  animation: true,
+                                                  progressColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primaryColor,
+                                                  backgroundColor:
+                                                      Color(0xFFF1F4F8),
+                                                  center: Text(
+                                                    'Tasks ',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Open Sans',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          fontSize: 10,
+                                                        ),
+                                                  ),
+                                                  startAngle: 360,
+                                                ),
                                                 Wrap(
                                                   spacing: 0,
                                                   runSpacing: 0,
@@ -165,7 +165,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                       'Roboto',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .campusGrey,
+                                                                      .primaryText,
                                                                   fontSize: 14,
                                                                   fontWeight:
                                                                       FontWeight
@@ -200,6 +200,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         .subtitle1
                                                         .override(
                                                           fontFamily: 'Roboto',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
                                                           fontSize: 14,
                                                         ),
                                                   ),
@@ -215,6 +218,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         .subtitle1
                                                         .override(
                                                           fontFamily: 'Roboto',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
                                                           fontSize: 14,
                                                         ),
                                                   ),
@@ -226,69 +232,63 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    width: MediaQuery.of(context).size.width,
-                                    height: 80,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          12, 0, 12, 0),
-                                      child: FlutterFlowChoiceChips(
-                                        initiallySelected:
-                                            choiceChipsValue != null
-                                                ? [choiceChipsValue]
-                                                : ['49 Jorissen'],
-                                        options: [
-                                          ChipData('49 Jorissen'),
-                                          ChipData('80 Jorissen'),
-                                          ChipData('Braamlofts'),
-                                          ChipData('Dunvista'),
-                                          ChipData('126 Siemert'),
-                                          ChipData('Wynton Joy'),
-                                          ChipData('Rennie House'),
-                                          ChipData('YMCA')
-                                        ],
-                                        onChanged: (val) => setState(
-                                            () => choiceChipsValue = val.first),
-                                        selectedChipStyle: ChipStyle(
-                                          backgroundColor: Color(0xFF262D34),
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyText1
-                                                  .override(
-                                                    fontFamily: 'Roboto',
-                                                    color: Colors.white,
-                                                    fontSize: 14,
-                                                  ),
-                                          iconColor: Colors.white,
-                                          iconSize: 0,
-                                          labelPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  10, 4, 10, 4),
-                                          elevation: 4,
-                                        ),
-                                        unselectedChipStyle: ChipStyle(
-                                          backgroundColor: Colors.white,
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyText2
-                                                  .override(
-                                                    fontFamily: 'Roboto',
-                                                    color: Color(0xFF262D34),
-                                                  ),
-                                          iconColor: Color(0xFF262D34),
-                                          iconSize: 18,
-                                          labelPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  10, 4, 10, 4),
-                                          elevation: 4,
-                                        ),
-                                        chipSpacing: 18,
-                                        multiselect: false,
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 20, 0, 0),
+                                    child: FlutterFlowChoiceChips(
+                                      initiallySelected:
+                                          choiceChipsValue != null
+                                              ? [choiceChipsValue]
+                                              : ['49 Jorissen'],
+                                      options: [
+                                        ChipData('49 Jorissen'),
+                                        ChipData('80 Jorissen'),
+                                        ChipData('Braamlofts'),
+                                        ChipData('Dunvista'),
+                                        ChipData('126 Siemert'),
+                                        ChipData('Wynton Joy'),
+                                        ChipData('Rennie House'),
+                                        ChipData('YMCA')
+                                      ],
+                                      onChanged: (val) => setState(
+                                          () => choiceChipsValue = val.first),
+                                      selectedChipStyle: ChipStyle(
+                                        backgroundColor: Color(0xFF040404),
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Open Sans',
+                                              color: Colors.white,
+                                              fontSize: 14,
+                                            ),
+                                        iconColor: Colors.white,
+                                        iconSize: 0,
+                                        labelPadding:
+                                            EdgeInsetsDirectional.fromSTEB(
+                                                10, 4, 10, 4),
+                                        elevation: 4,
                                       ),
+                                      unselectedChipStyle: ChipStyle(
+                                        backgroundColor: Colors.white,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .bodyText2
+                                            .override(
+                                              fontFamily: 'Roboto',
+                                              color: Color(0xFF262D34),
+                                            ),
+                                        iconColor: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        iconSize: 18,
+                                        labelPadding:
+                                            EdgeInsetsDirectional.fromSTEB(
+                                                10, 4, 10, 4),
+                                        elevation: 4,
+                                      ),
+                                      chipSpacing: 18,
+                                      rowSpacing: 10,
+                                      multiselect: false,
+                                      initialized: choiceChipsValue != null,
+                                      alignment: WrapAlignment.start,
                                     ),
                                   ),
                                 ],
@@ -307,7 +307,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             TabBar(
                                               labelColor:
                                                   FlutterFlowTheme.of(context)
-                                                      .primaryColor,
+                                                      .primaryText,
                                               unselectedLabelColor:
                                                   Color(0xFF6E6E6E),
                                               labelStyle:
@@ -315,7 +315,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       .bodyText1,
                                               indicatorColor:
                                                   FlutterFlowTheme.of(context)
-                                                      .secondaryColor,
+                                                      .primaryText,
                                               tabs: [
                                                 Tab(
                                                   text: 'Submitted',
@@ -351,7 +351,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               'Search results',
                                                               style: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .bodyText2,
+                                                                  .bodyText2
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Roboto',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText,
+                                                                  ),
                                                             ),
                                                           ],
                                                         ),
@@ -376,10 +383,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                       'building',
                                                                       isEqualTo:
                                                                           choiceChipsValue)
-                                                                  .where(
-                                                                      'isDone',
-                                                                      isEqualTo:
-                                                                          false)
                                                                   .orderBy(
                                                                       'created_time',
                                                                       descending:
@@ -481,18 +484,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                               assigned: currentUserDisplayName,
                                                                             );
                                                                             await listViewMaintenanceRecord.reference.update(maintenanceUpdateData);
-                                                                            ScaffoldMessenger.of(context).showSnackBar(
-                                                                              SnackBar(
-                                                                                content: Text(
-                                                                                  'Status has been changed successfully',
-                                                                                  style: TextStyle(
-                                                                                    color: FlutterFlowTheme.of(context).tertiaryColor,
-                                                                                  ),
-                                                                                ),
-                                                                                duration: Duration(milliseconds: 4000),
-                                                                                backgroundColor: FlutterFlowTheme.of(context).campusGrey,
-                                                                              ),
-                                                                            );
                                                                           },
                                                                         ),
                                                                       ],
@@ -506,6 +497,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                               .title3
                                                                               .override(
                                                                                 fontFamily: 'Roboto',
+                                                                                color: FlutterFlowTheme.of(context).primaryText,
                                                                                 fontSize: 18,
                                                                                 fontWeight: FontWeight.normal,
                                                                               ),
@@ -522,12 +514,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           Icons
                                                                               .arrow_forward_ios,
                                                                           color:
-                                                                              Color(0xFF303030),
+                                                                              FlutterFlowTheme.of(context).primaryText,
                                                                           size:
                                                                               20,
                                                                         ),
                                                                         tileColor:
-                                                                            Color(0xFFF5F5F5),
+                                                                            FlutterFlowTheme.of(context).primaryBackground,
                                                                         dense:
                                                                             false,
                                                                       ),
@@ -561,7 +553,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               'Search results',
                                                               style: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .bodyText2,
+                                                                  .bodyText2
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Roboto',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText,
+                                                                  ),
                                                             ),
                                                           ],
                                                         ),
@@ -586,10 +585,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                       'building',
                                                                       isEqualTo:
                                                                           choiceChipsValue)
-                                                                  .where(
-                                                                      'isDone',
-                                                                      isEqualTo:
-                                                                          false)
                                                                   .orderBy(
                                                                       'created_time',
                                                                       descending:
@@ -681,6 +676,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                             .title3
                                                                             .override(
                                                                               fontFamily: 'Roboto',
+                                                                              color: FlutterFlowTheme.of(context).primaryText,
                                                                               fontSize: 18,
                                                                               fontWeight: FontWeight.normal,
                                                                             ),
@@ -690,11 +686,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                         listViewMaintenanceRecord
                                                                             .room,
                                                                         style: FlutterFlowTheme.of(context)
-                                                                            .subtitle2,
+                                                                            .subtitle2
+                                                                            .override(
+                                                                              fontFamily: 'Roboto',
+                                                                              color: FlutterFlowTheme.of(context).primaryText,
+                                                                            ),
                                                                       ),
                                                                       tileColor:
-                                                                          Color(
-                                                                              0xFFF5F5F5),
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .primaryBackground,
                                                                       dense:
                                                                           false,
                                                                     ),
@@ -724,7 +724,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               'Search results',
                                                               style: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .bodyText2,
+                                                                  .bodyText2
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Roboto',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText,
+                                                                  ),
                                                             ),
                                                           ],
                                                         ),
@@ -746,9 +753,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                       isEqualTo:
                                                                           choiceChipsValue)
                                                                   .where(
-                                                                      'isDone',
+                                                                      'status',
                                                                       isEqualTo:
-                                                                          true)
+                                                                          'Completed')
                                                                   .orderBy(
                                                                       'created_time',
                                                                       descending:
@@ -831,64 +838,32 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                       );
                                                                     },
                                                                     child:
-                                                                        Slidable(
-                                                                      actionPane:
-                                                                          const SlidableScrollActionPane(),
-                                                                      secondaryActions: [
-                                                                        IconSlideAction(
-                                                                          caption:
-                                                                              'Close',
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primaryColor,
-                                                                          icon:
-                                                                              Icons.auto_awesome_motion,
-                                                                          onTap:
-                                                                              () async {
-                                                                            if ((currentUserEmail) ==
-                                                                                'frans@conurban.co.za') {
-                                                                              final maintenanceUpdateData = createMaintenanceRecordData(
-                                                                                status: 'Closed',
-                                                                              );
-                                                                              await listViewMaintenanceRecord.reference.update(maintenanceUpdateData);
-                                                                            }
-                                                                          },
-                                                                        ),
-                                                                      ],
-                                                                      child:
-                                                                          ListTile(
-                                                                        title:
-                                                                            Text(
-                                                                          listViewMaintenanceRecord
-                                                                              .issue,
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .title3
-                                                                              .override(
-                                                                                fontFamily: 'Roboto',
-                                                                                fontSize: 18,
-                                                                                fontWeight: FontWeight.normal,
-                                                                              ),
-                                                                        ),
-                                                                        subtitle:
-                                                                            Text(
-                                                                          listViewMaintenanceRecord
-                                                                              .room,
-                                                                          style:
-                                                                              FlutterFlowTheme.of(context).subtitle2,
-                                                                        ),
-                                                                        trailing:
-                                                                            Icon(
-                                                                          Icons
-                                                                              .arrow_forward_ios,
-                                                                          color:
-                                                                              Color(0xFF303030),
-                                                                          size:
-                                                                              20,
-                                                                        ),
-                                                                        tileColor:
-                                                                            Color(0xFFF5F5F5),
-                                                                        dense:
-                                                                            false,
+                                                                        ListTile(
+                                                                      title:
+                                                                          Text(
+                                                                        listViewMaintenanceRecord
+                                                                            .issue,
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .title3
+                                                                            .override(
+                                                                              fontFamily: 'Roboto',
+                                                                              color: FlutterFlowTheme.of(context).primaryText,
+                                                                              fontSize: 18,
+                                                                              fontWeight: FontWeight.normal,
+                                                                            ),
                                                                       ),
+                                                                      subtitle:
+                                                                          Text(
+                                                                        listViewMaintenanceRecord
+                                                                            .room,
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .subtitle2,
+                                                                      ),
+                                                                      tileColor:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .primaryBackground,
+                                                                      dense:
+                                                                          false,
                                                                     ),
                                                                   );
                                                                 },

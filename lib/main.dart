@@ -5,10 +5,10 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'auth/firebase_user_provider.dart';
 import 'auth/auth_util.dart';
 import 'backend/push_notifications/push_notifications_util.dart';
+import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/internationalization.dart';
 import 'package:consolidated_urban_management/login_page/login_page_widget.dart';
-import 'flutter_flow/flutter_flow_theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -21,6 +21,8 @@ import 'settings_page/settings_page_widget.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
+  await FlutterFlowTheme.initialize();
 
   runApp(MyApp());
 }
@@ -36,7 +38,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   Locale _locale;
-  ThemeMode _themeMode = ThemeMode.system;
+  ThemeMode _themeMode = FlutterFlowTheme.themeMode;
   Stream<ConsolidatedUrbanManagementFirebaseUser> userStream;
   ConsolidatedUrbanManagementFirebaseUser initialUser;
   bool displaySplashImage = true;
@@ -46,6 +48,7 @@ class _MyAppState extends State<MyApp> {
   void setLocale(Locale value) => setState(() => _locale = value);
   void setThemeMode(ThemeMode mode) => setState(() {
         _themeMode = mode;
+        FlutterFlowTheme.saveThemeMode(mode);
       });
 
   @override
@@ -79,6 +82,7 @@ class _MyAppState extends State<MyApp> {
         Locale('en', ''),
       ],
       theme: ThemeData(brightness: Brightness.light),
+      darkTheme: ThemeData(brightness: Brightness.dark),
       themeMode: _themeMode,
       home: initialUser == null || displaySplashImage
           ? Container(
@@ -135,10 +139,10 @@ class _NavBarPageState extends State<NavBarPage> {
         selectedIndex: currentIndex,
         onTabChange: (i) =>
             setState(() => _currentPage = tabs.keys.toList()[i]),
-        backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         color: FlutterFlowTheme.of(context).campusGrey,
-        activeColor: FlutterFlowTheme.of(context).tertiaryColor,
-        tabBackgroundColor: FlutterFlowTheme.of(context).secondaryColor,
+        activeColor: Color(0xFFF5F4F4),
+        tabBackgroundColor: Color(0xFFE97A36),
         tabBorderRadius: 25,
         tabMargin: EdgeInsetsDirectional.fromSTEB(6, 12, 6, 14),
         padding: EdgeInsetsDirectional.fromSTEB(14, 12, 4, 12),
@@ -148,31 +152,31 @@ class _NavBarPageState extends State<NavBarPage> {
         haptic: true,
         tabs: [
           GButton(
-            icon: Icons.home_outlined,
-            text: 'Home',
+            icon: FFIcons.khome3,
+            text: '',
             iconSize: 24,
           ),
           GButton(
-            icon: Icons.auto_awesome_motion,
-            text: 'VIEW',
-            iconSize: 24,
+            icon: FFIcons.kapps,
+            text: '',
+            iconSize: 20,
           ),
           GButton(
-            icon: currentIndex == 2 ? Icons.mail : Icons.mail_outline,
-            text: 'INBOX',
+            icon: FFIcons.kmessage3,
+            text: '',
             textStyle: TextStyle(
               color: FlutterFlowTheme.of(context).tertiaryColor,
             ),
             iconSize: 24,
           ),
           GButton(
-            icon: Icons.group_add,
-            text: 'TEAM',
-            iconSize: 24,
+            icon: FFIcons.kaddGroup,
+            text: '',
+            iconSize: 25,
           ),
           GButton(
-            icon: currentIndex == 4 ? Icons.person : Icons.person_outline,
-            text: 'SETTINGS',
+            icon: FFIcons.kprofile,
+            text: '',
             iconSize: 24,
           )
         ],

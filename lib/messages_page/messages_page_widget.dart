@@ -32,7 +32,7 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         automaticallyImplyLeading: false,
         leading: ToggleIcon(
           onPressed: () async {
@@ -40,13 +40,13 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
           },
           value: FFAppState().isPressed,
           onIcon: Icon(
-            Icons.search_sharp,
-            color: Colors.black,
+            FFIcons.ksearch,
+            color: FlutterFlowTheme.of(context).primaryText,
             size: 25,
           ),
           offIcon: Icon(
             Icons.arrow_back_sharp,
-            color: Colors.black,
+            color: FlutterFlowTheme.of(context).primaryText,
             size: 25,
           ),
         ),
@@ -79,7 +79,10 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                     ),
                   ),
                 ),
-                style: FlutterFlowTheme.of(context).bodyText1,
+                style: FlutterFlowTheme.of(context).bodyText1.override(
+                      fontFamily: 'Roboto',
+                      color: FlutterFlowTheme.of(context).primaryText,
+                    ),
                 keyboardType: TextInputType.name,
               ),
             if (FFAppState().isPressed ?? true)
@@ -87,6 +90,7 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                 'Inbox',
                 style: FlutterFlowTheme.of(context).title3.override(
                       fontFamily: 'Roboto',
+                      color: FlutterFlowTheme.of(context).primaryText,
                       fontSize: 18,
                     ),
               ),
@@ -96,7 +100,7 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
         centerTitle: false,
         elevation: 2,
       ),
-      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -172,19 +176,19 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                             unreadColor: Color(0xFF1785BF),
                             titleTextStyle: GoogleFonts.getFont(
                               'Roboto',
-                              color: Colors.black,
+                              color: FlutterFlowTheme.of(context).primaryText,
                               fontWeight: FontWeight.bold,
                               fontSize: 14,
                             ),
                             dateTextStyle: GoogleFonts.getFont(
                               'Roboto',
-                              color: Color(0x73000000),
+                              color: FlutterFlowTheme.of(context).primaryText,
                               fontWeight: FontWeight.normal,
-                              fontSize: 12,
+                              fontSize: 10,
                             ),
                             previewTextStyle: GoogleFonts.getFont(
                               'Roboto',
-                              color: Color(0x73000000),
+                              color: FlutterFlowTheme.of(context).primaryText,
                               fontWeight: FontWeight.normal,
                               fontSize: 13,
                             ),
