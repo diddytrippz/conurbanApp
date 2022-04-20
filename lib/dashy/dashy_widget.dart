@@ -33,69 +33,17 @@ class _DashyWidgetState extends State<DashyWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(
-                  'Conurban Maintenance',
-                  style: FlutterFlowTheme.of(context).title1.override(
-                        fontFamily: 'Roboto',
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
-                StreamBuilder<List<MaintenanceRecord>>(
-                  stream: queryMaintenanceRecord(
-                    singleRecord: true,
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 300,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
                   ),
-                  builder: (context, snapshot) {
-                    // Customize what your widget looks like when it's loading.
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: SizedBox(
-                          width: 60,
-                          height: 60,
-                          child: SpinKitPulse(
-                            color: FlutterFlowTheme.of(context).primaryColor,
-                            size: 60,
-                          ),
-                        ),
-                      );
-                    }
-                    List<MaintenanceRecord> rowMaintenanceRecordList =
-                        snapshot.data;
-                    // Return an empty Container when the document does not exist.
-                    if (snapshot.data.isEmpty) {
-                      return Container();
-                    }
-                    final rowMaintenanceRecord =
-                        rowMaintenanceRecordList.isNotEmpty
-                            ? rowMaintenanceRecordList.first
-                            : null;
-                    return Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                          child: Text(
-                            'Total Requests',
-                            style: FlutterFlowTheme.of(context).title1.override(
-                                  fontFamily: 'Roboto',
-                                  color:
-                                      FlutterFlowTheme.of(context).campusGrey,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    custom_widgets.PieChartSample1(
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 12),
+                    child: custom_widgets.PieChartSample1(
                       width: MediaQuery.of(context).size.width,
                       height: 280,
                       backgroundColor: Colors.transparent,
@@ -112,7 +60,7 @@ class _DashyWidgetState extends State<DashyWidget> {
                       value3: 132.0,
                       value4: 0.0,
                     ),
-                  ],
+                  ),
                 ),
               ],
             ),
