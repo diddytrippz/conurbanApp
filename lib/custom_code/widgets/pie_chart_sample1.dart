@@ -90,7 +90,7 @@ class _PieChartSample1State extends State<PieChartSample1> {
               ),
             ),
             Column(
-              mainAxisSize: MainAxisSize.max,
+              mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
