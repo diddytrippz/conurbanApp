@@ -105,6 +105,7 @@ class _DashyWidgetState extends State<DashyWidget> {
                       title2Color: Color(0xFFEFB842),
                       title3: 'Open',
                       title3Color: Color(0xFFB82925),
+                      title4: 'Unknown',
                       title4Color: Color(0xFF040404),
                       value1: 299.0,
                       value2: 46.0,
