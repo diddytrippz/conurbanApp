@@ -1,5 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../dashy/dashy_widget.dart';
 import '../flutter_flow/flutter_flow_choice_chips.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -108,32 +109,52 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.center,
                                               children: [
-                                                CircularPercentIndicator(
-                                                  percent: 0.75,
-                                                  radius: 42.5,
-                                                  lineWidth: 15,
-                                                  animation: true,
-                                                  progressColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryColor,
-                                                  backgroundColor:
-                                                      Color(0xFFF1F4F8),
-                                                  center: Text(
-                                                    'Tasks ',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily:
-                                                              'Open Sans',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          fontSize: 10,
-                                                        ),
+                                                InkWell(
+                                                  onTap: () async {
+                                                    await Navigator.push(
+                                                      context,
+                                                      PageTransition(
+                                                        type: PageTransitionType
+                                                            .bottomToTop,
+                                                        duration: Duration(
+                                                            milliseconds: 300),
+                                                        reverseDuration:
+                                                            Duration(
+                                                                milliseconds:
+                                                                    300),
+                                                        child: DashyWidget(),
+                                                      ),
+                                                    );
+                                                  },
+                                                  child:
+                                                      CircularPercentIndicator(
+                                                    percent: 0.75,
+                                                    radius: 42.5,
+                                                    lineWidth: 15,
+                                                    animation: true,
+                                                    progressColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primaryColor,
+                                                    backgroundColor:
+                                                        Color(0xFFF1F4F8),
+                                                    center: Text(
+                                                      'Tasks ',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Open Sans',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
+                                                                fontSize: 10,
+                                                              ),
+                                                    ),
+                                                    startAngle: 360,
                                                   ),
-                                                  startAngle: 360,
                                                 ),
                                                 Wrap(
                                                   spacing: 0,
