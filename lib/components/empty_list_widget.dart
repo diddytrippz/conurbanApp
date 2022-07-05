@@ -52,7 +52,9 @@ class _EmptyListWidgetState extends State<EmptyListWidget> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'No results were found from your seaech.\nPlease try again.',
+                        FFLocalizations.of(context).getText(
+                          '2qmg1npm' /* No results were found from you... */,
+                        ),
                         textAlign: TextAlign.center,
                         style: FlutterFlowTheme.of(context).bodyText1.override(
                               fontFamily: 'Roboto',

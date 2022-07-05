@@ -106,7 +106,7 @@ abstract class MaintenanceRecord
           ..room = snapshot.data['room']
           ..building = snapshot.data['building']
           ..notes = snapshot.data['notes']
-          ..rating = snapshot.data['rating']
+          ..rating = snapshot.data['rating']?.round()
           ..isDone = snapshot.data['isDone']
           ..category = snapshot.data['category']
           ..assigned = snapshot.data['assigned']

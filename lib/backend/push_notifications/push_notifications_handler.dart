@@ -9,20 +9,12 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
+import '../../index.dart';
 import '../../main.dart';
-import '../../login_page/login_page_widget.dart';
-import '../../more_info/more_info_widget.dart';
-import '../../edit_profile/edit_profile_widget.dart';
-import '../../chat_page/chat_page_widget.dart';
-import '../../verify/verify_widget.dart';
-import '../../dashy/dashy_widget.dart';
 
 class PushNotificationsHandler extends StatefulWidget {
-  const PushNotificationsHandler(
-      {Key key, this.handlePushNotification, this.child})
-      : super(key: key);
+  const PushNotificationsHandler({Key key, this.child}) : super(key: key);
 
-  final Function(BuildContext) handlePushNotification;
   final Widget child;
 
   @override
@@ -34,6 +26,10 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
   bool _loading = false;
 
   Future handleOpenedPushNotification() async {
+    if (isWeb) {
+      return;
+    }
+
     final notification = await FirebaseMessaging.instance.getInitialMessage();
     if (notification != null) {
       await _handlePushNotification(notification);
@@ -86,8 +82,8 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
 
 final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'loginPage': (data) async => LoginPageWidget(),
-  'homePage': (data) async => NavBarPage(initialPage: 'HomePageWidget'),
-  'settingsPage': (data) async => NavBarPage(initialPage: 'SettingsPageWidget'),
+  'homePage': (data) async => NavBarPage(initialPage: 'homePage'),
+  'settingsPage': (data) async => NavBarPage(initialPage: 'settingsPage'),
   'moreInfo': (data) async => MoreInfoWidget(
         jobStatus: await getDocumentParameter(
             data, 'jobStatus', MaintenanceRecord.serializer),
@@ -98,13 +94,8 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
             data, 'chatUser', UsersRecord.serializer),
         chatRef: getParameter(data, 'chatRef'),
       ),
-  'MessagesPage': (data) async => NavBarPage(initialPage: 'MessagesPageWidget'),
-  'members': (data) async => NavBarPage(initialPage: 'MembersWidget'),
-  'verify': (data) async => VerifyWidget(),
-  'dashy': (data) async => DashyWidget(
-        listOf: await getDocumentParameter(
-            data, 'listOf', MaintenanceRecord.serializer),
-      ),
+  'MessagesPage': (data) async => NavBarPage(initialPage: 'MessagesPage'),
+  'members': (data) async => MembersWidget(),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>

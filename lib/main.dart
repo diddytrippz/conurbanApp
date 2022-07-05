@@ -5,24 +5,21 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'auth/firebase_user_provider.dart';
 import 'auth/auth_util.dart';
 import 'backend/push_notifications/push_notifications_util.dart';
-import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
+import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
-import 'package:consolidated_urban_management/login_page/login_page_widget.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'onboarding/onboarding_widget.dart';
-import 'home_page/home_page_widget.dart';
-import 'messages_page/messages_page_widget.dart';
-import 'members/members_widget.dart';
-import 'settings_page/settings_page_widget.dart';
+import 'index.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
   await FlutterFlowTheme.initialize();
+
+  FFAppState(); // Initialize FFAppState
 
   runApp(MyApp());
 }
@@ -30,7 +27,7 @@ void main() async {
 class MyApp extends StatefulWidget {
   // This widget is the root of your application.
   @override
-  _MyAppState createState() => _MyAppState();
+  State<MyApp> createState() => _MyAppState();
 
   static _MyAppState of(BuildContext context) =>
       context.findAncestorStateOfType<_MyAppState>();
@@ -39,17 +36,13 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Locale _locale;
   ThemeMode _themeMode = FlutterFlowTheme.themeMode;
+
   Stream<ConsolidatedUrbanManagementFirebaseUser> userStream;
   ConsolidatedUrbanManagementFirebaseUser initialUser;
   bool displaySplashImage = true;
+
   final authUserSub = authenticatedUserStream.listen((_) {});
   final fcmTokenSub = fcmTokenUserStream.listen((_) {});
-
-  void setLocale(Locale value) => setState(() => _locale = value);
-  void setThemeMode(ThemeMode mode) => setState(() {
-        _themeMode = mode;
-        FlutterFlowTheme.saveThemeMode(mode);
-      });
 
   @override
   void initState() {
@@ -57,7 +50,9 @@ class _MyAppState extends State<MyApp> {
     userStream = consolidatedUrbanManagementFirebaseUserStream()
       ..listen((user) => initialUser ?? setState(() => initialUser = user));
     Future.delayed(
-        Duration(seconds: 1), () => setState(() => displaySplashImage = false));
+      Duration(seconds: 1),
+      () => setState(() => displaySplashImage = false),
+    );
   }
 
   @override
@@ -66,6 +61,12 @@ class _MyAppState extends State<MyApp> {
     fcmTokenSub.cancel();
     super.dispose();
   }
+
+  void setLocale(Locale value) => setState(() => _locale = value);
+  void setThemeMode(ThemeMode mode) => setState(() {
+        _themeMode = mode;
+        FlutterFlowTheme.saveThemeMode(mode);
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +81,8 @@ class _MyAppState extends State<MyApp> {
       locale: _locale,
       supportedLocales: const [
         Locale('en', ''),
+        Locale('af', ''),
+        Locale('zu', ''),
       ],
       theme: ThemeData(brightness: Brightness.light),
       darkTheme: ThemeData(brightness: Brightness.dark),
@@ -129,7 +132,6 @@ class _NavBarPageState extends State<NavBarPage> {
       'onboarding': OnboardingWidget(),
       'homePage': HomePageWidget(),
       'MessagesPage': MessagesPageWidget(),
-      'members': MembersWidget(),
       'settingsPage': SettingsPageWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
@@ -141,8 +143,8 @@ class _NavBarPageState extends State<NavBarPage> {
             setState(() => _currentPage = tabs.keys.toList()[i]),
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         color: FlutterFlowTheme.of(context).campusGrey,
-        activeColor: Color(0xFFF5F4F4),
-        tabBackgroundColor: Color(0xFFE97A36),
+        activeColor: FlutterFlowTheme.of(context).primaryText,
+        tabBackgroundColor: Color(0x00E97A36),
         tabBorderRadius: 25,
         tabMargin: EdgeInsetsDirectional.fromSTEB(6, 12, 6, 14),
         padding: EdgeInsetsDirectional.fromSTEB(14, 12, 4, 12),
@@ -152,32 +154,27 @@ class _NavBarPageState extends State<NavBarPage> {
         haptic: true,
         tabs: [
           GButton(
-            icon: FFIcons.khome3,
+            icon: FontAwesomeIcons.home,
             text: '',
             iconSize: 24,
           ),
           GButton(
-            icon: FFIcons.kapps,
+            icon: FontAwesomeIcons.edit,
             text: '',
-            iconSize: 20,
+            iconSize: 24,
           ),
           GButton(
-            icon: FFIcons.kmessage3,
+            icon: FFIcons.kchatboxes,
             text: '',
             textStyle: TextStyle(
               color: FlutterFlowTheme.of(context).tertiaryColor,
             ),
-            iconSize: 24,
+            iconSize: 28,
           ),
           GButton(
-            icon: FFIcons.kaddGroup,
+            icon: Icons.settings,
             text: '',
-            iconSize: 25,
-          ),
-          GButton(
-            icon: FFIcons.kprofile,
-            text: '',
-            iconSize: 24,
+            iconSize: 28,
           )
         ],
       ),
