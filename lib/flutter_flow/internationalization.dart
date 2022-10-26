@@ -7,22 +7,22 @@ class FFLocalizations {
   final Locale locale;
 
   static FFLocalizations of(BuildContext context) =>
-      Localizations.of<FFLocalizations>(context, FFLocalizations);
+      Localizations.of<FFLocalizations>(context, FFLocalizations)!;
 
   static List<String> languages() => ['en', 'af', 'zu'];
 
-  String get languageCode => locale.languageCode;
+  String get languageCode => locale.toString();
   int get languageIndex => languages().contains(languageCode)
       ? languages().indexOf(languageCode)
       : 0;
 
   String getText(String key) =>
-      (kTranslationsMap[key] ?? {})[locale.languageCode] ?? '';
+      (kTranslationsMap[key] ?? {})[locale.toString()] ?? '';
 
   String getVariableText({
-    String enText = '',
-    String afText = '',
-    String zuText = '',
+    String? enText = '',
+    String? afText = '',
+    String? zuText = '',
   }) =>
       [enText, afText, zuText][languageIndex] ?? '';
 }
@@ -32,7 +32,7 @@ class FFLocalizationsDelegate extends LocalizationsDelegate<FFLocalizations> {
 
   @override
   bool isSupported(Locale locale) =>
-      FFLocalizations.languages().contains(locale.languageCode);
+      FFLocalizations.languages().contains(locale.toString());
 
   @override
   Future<FFLocalizations> load(Locale locale) =>
@@ -41,6 +41,13 @@ class FFLocalizationsDelegate extends LocalizationsDelegate<FFLocalizations> {
   @override
   bool shouldReload(FFLocalizationsDelegate old) => false;
 }
+
+Locale createLocale(String language) => language.contains('_')
+    ? Locale.fromSubtags(
+        languageCode: language.split('_').first,
+        scriptCode: language.split('_').last,
+      )
+    : Locale(language);
 
 final kTranslationsMap = <Map<String, Map<String, String>>>[
   // onboarding
@@ -116,47 +123,57 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // homePage
   {
-    '08etjnuk': {
+    'whhs6e39': {
       'en': '49 Jorissen',
       'af': '49 Jorissen',
       'zu': '49 Jorissen',
     },
-    'tpsj7w1z': {
+    'm2aya14q': {
       'en': '80 Jorissen',
       'af': '80 Jorissen',
       'zu': '80 Jorissen',
     },
-    '94t8vds9': {
+    'w66ko3ya': {
       'en': 'Braamlofts',
       'af': 'Braamlofts',
       'zu': 'Ama-Braamlofts',
     },
-    'bq57k0is': {
+    '4nw3mbzz': {
       'en': 'Dunvista',
       'af': 'Dunvista',
       'zu': 'Dunvista',
     },
-    'wruqqg64': {
+    'sjw248l8': {
       'en': '126 Siemert',
       'af': '126 Siemert',
       'zu': '126 Siemert',
     },
-    '5doz0qe5': {
+    'k69s2u9x': {
       'en': 'Wynton Joy',
       'af': 'Wynton Joy',
       'zu': 'Wynton Joy',
     },
-    'm54ifkhe': {
+    'oufn4av2': {
       'en': 'Rennie House',
       'af': 'Rennie Huis',
       'zu': 'Izindlu zikaRennie',
     },
-    'uvsvwads': {
+    'e1mtxgnq': {
       'en': 'YMCA',
       'af': 'YMCA',
       'zu': 'I-YMCA',
     },
-    '7cgxecon': {
+    'asufi84p': {
+      'en': '277 Bree Street',
+      'af': '',
+      'zu': '',
+    },
+    '5f4jqyoh': {
+      'en': '279 Bree Street',
+      'af': '',
+      'zu': '',
+    },
+    'bi8ilzh4': {
       'en': '49 Jorissen',
       'af': '49 Jorissen',
       'zu': '49 Jorissen',
@@ -190,11 +207,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Completed',
       'af': 'Voltooi',
       'zu': 'Kuqediwe',
-    },
-    '5qqng74d': {
-      'en': 'Search results',
-      'af': 'Soek Resultate',
-      'zu': 'Imiphumela yosesho',
     },
   },
   // settingsPage
@@ -233,6 +245,49 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Settings',
       'af': 'Instellings',
       'zu': 'Izilungiselelo',
+    },
+  },
+  // editProfile
+  {
+    'md5hmb31': {
+      'en': 'Change My Picture',
+      'af': 'Verander my prentjie',
+      'zu': 'Shintsha Isithombe Sami',
+    },
+    'ewwa3itt': {
+      'en': 'Name',
+      'af': 'Naam',
+      'zu': 'Igama',
+    },
+    'e9qupoa6': {
+      'en': 'Email',
+      'af': 'E-pos',
+      'zu': 'I-imeyili',
+    },
+    'nodm1wpq': {
+      'en': 'Bio    ',
+      'af': 'Bio',
+      'zu': 'I-Bio',
+    },
+    'jz2nh1hw': {
+      'en': 'Write about yourself...',
+      'af': 'Skryf oor jouself...',
+      'zu': 'Bhala ngawe...',
+    },
+    'keev4u4m': {
+      'en': 'Profile',
+      'af': 'Profiel',
+      'zu': 'Iphrofayela',
+    },
+    'a266amof': {
+      'en': 'Save',
+      'af': 'Stoor',
+      'zu': 'Londoloza',
+    },
+    'ml5wkcpi': {
+      'en': 'Home',
+      'af': 'Tuis',
+      'zu': 'Ikhaya',
     },
   },
   // moreInfo
@@ -326,64 +381,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zu': 'Ikhaya',
     },
   },
-  // editProfile
-  {
-    'md5hmb31': {
-      'en': 'Change My Picture',
-      'af': 'Verander my prentjie',
-      'zu': 'Shintsha Isithombe Sami',
-    },
-    'ewwa3itt': {
-      'en': 'Name',
-      'af': 'Naam',
-      'zu': 'Igama',
-    },
-    'e9qupoa6': {
-      'en': 'Email',
-      'af': 'E-pos',
-      'zu': 'I-imeyili',
-    },
-    'nodm1wpq': {
-      'en': 'Bio    ',
-      'af': 'Bio',
-      'zu': 'I-Bio',
-    },
-    'jz2nh1hw': {
-      'en': 'Write about yourself...',
-      'af': 'Skryf oor jouself...',
-      'zu': 'Bhala ngawe...',
-    },
-    'vhcbk10y': {
-      'en': 'Building',
-      'af': 'Gebou',
-      'zu': 'Isakhiwo',
-    },
-    'op1s99pp': {
-      'en': 'Room',
-      'af': 'Kamer',
-      'zu': 'Igumbi',
-    },
-    '68s6f4gx': {
-      'en': 'UID',
-      'af': 'UID',
-      'zu': 'I-UID',
-    },
-    'keev4u4m': {
-      'en': 'Profile',
-      'af': 'Profiel',
-      'zu': 'Iphrofayela',
-    },
-    'a266amof': {
-      'en': 'Save',
-      'af': 'Stoor',
-      'zu': 'Londoloza',
-    },
-    'ml5wkcpi': {
-      'en': 'Home',
-      'af': 'Tuis',
-      'zu': 'Ikhaya',
-    },
-  },
   // ChatPage
   {
     'wyvwgjhq': {
@@ -428,6 +425,152 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zu': 'Ikhaya',
     },
   },
+  // dash
+  {
+    'a59v8wcu': {
+      'en': 'Maintenance Reports',
+      'af': '',
+      'zu': '',
+    },
+    'm84kzjek': {
+      'en': 'Submitted',
+      'af': '',
+      'zu': '',
+    },
+    'sztpydtz': {
+      'en': 'Pending',
+      'af': '',
+      'zu': '',
+    },
+    '3g9hs7ex': {
+      'en': 'Completed',
+      'af': '',
+      'zu': '',
+    },
+    '78nv1r2b': {
+      'en': 'daily',
+      'af': '',
+      'zu': '',
+    },
+    's833j868': {
+      'en': 'Weekly',
+      'af': '',
+      'zu': '',
+    },
+    'qkby8cz5': {
+      'en': 'Monthly',
+      'af': '',
+      'zu': '',
+    },
+    'lj4pmw3f': {
+      'en': 'Yeraly',
+      'af': '',
+      'zu': '',
+    },
+    'querhto9': {
+      'en': 'Buildings',
+      'af': '',
+      'zu': '',
+    },
+    'wdf199rk': {
+      'en': 'Dashboard',
+      'af': '',
+      'zu': '',
+    },
+    'tf5x988k': {
+      'en': 'Home',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // report
+  {
+    '4ieis2kl': {
+      'en': 'Report Issue',
+      'af': '',
+      'zu': '',
+    },
+    'rggrtepz': {
+      'en': 'Name',
+      'af': '',
+      'zu': '',
+    },
+    'ryfdk6sw': {
+      'en': ' ',
+      'af': '',
+      'zu': '',
+    },
+    '038up5ga': {
+      'en': 'Issue',
+      'af': '',
+      'zu': '',
+    },
+    '8o7quwtd': {
+      'en': '',
+      'af': '',
+      'zu': '',
+    },
+    'gmm5tpy4': {
+      'en': 'Describe your Issue',
+      'af': '',
+      'zu': '',
+    },
+    'novo3p65': {
+      'en': 'Building',
+      'af': '',
+      'zu': '',
+    },
+    '58rtl5ca': {
+      'en': '277 Bree Street',
+      'af': '',
+      'zu': '',
+    },
+    '59ws48zd': {
+      'en': '279 Bree Street',
+      'af': '',
+      'zu': '',
+    },
+    'dwj3lg66': {
+      'en': 'Conurban Offices',
+      'af': '',
+      'zu': '',
+    },
+    'tk388wsk': {
+      'en': 'Select building...',
+      'af': '',
+      'zu': '',
+    },
+    '1edgfftx': {
+      'en': 'Submit',
+      'af': '',
+      'zu': '',
+    },
+    'e7bxm3ds': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    '7o46wojr': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
+    },
+    '8fzb5e1i': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    'evy3n1yb': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
+    },
+    'r6bgy181': {
+      'en': 'Home',
+      'af': '',
+      'zu': '',
+    },
+  },
   // emptyList
   {
     '2qmg1npm': {
@@ -458,18 +601,37 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // Languages
   {
-    'vqnqc46x': {
+    't7f3lc00': {
       'en': 'Afrikaans',
       'af': '',
       'zu': '',
     },
-    '89inkaoh': {
+    '97digb72': {
       'en': 'English',
       'af': '',
       'zu': '',
     },
-    'nkxy3bl4': {
+    'uutqfcje': {
       'en': 'Zulu',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // submittedIcon
+  {
+    'ardjepcf': {
+      'en': 'Success!',
+      'af': '',
+      'zu': '',
+    },
+    '22w06c6i': {
+      'en':
+          'Your request has been received\nby the Campus Africa maintenance\nteam.',
+      'af': '',
+      'zu': '',
+    },
+    'frs7zym8': {
+      'en': 'Continue',
       'af': '',
       'zu': '',
     },

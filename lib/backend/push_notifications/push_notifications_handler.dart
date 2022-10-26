@@ -12,8 +12,11 @@ import 'package:flutter/material.dart';
 import '../../index.dart';
 import '../../main.dart';
 
+final _handledMessageIds = <String?>{};
+
 class PushNotificationsHandler extends StatefulWidget {
-  const PushNotificationsHandler({Key key, this.child}) : super(key: key);
+  const PushNotificationsHandler({Key? key, required this.child})
+      : super(key: key);
 
   final Widget child;
 
@@ -38,7 +41,14 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
   }
 
   Future _handlePushNotification(RemoteMessage message) async {
-    setState(() => _loading = true);
+    if (_handledMessageIds.contains(message.messageId)) {
+      return;
+    }
+    _handledMessageIds.add(message.messageId);
+
+    if (mounted) {
+      setState(() => _loading = true);
+    }
     try {
       final initialPageName = message.data['initialPageName'] as String;
       final initialParameterData = getInitialParameterData(message.data);
@@ -53,7 +63,9 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
     } catch (e) {
       print('Error: $e');
     } finally {
-      setState(() => _loading = false);
+      if (mounted) {
+        setState(() => _loading = false);
+      }
     }
   }
 
@@ -68,12 +80,10 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
       ? Container(
           color: FlutterFlowTheme.of(context).mellow,
           child: Center(
-            child: Builder(
-              builder: (context) => Image.asset(
-                'assets/images/Consolidated+urban+logo+2018+.png',
-                width: MediaQuery.of(context).size.width * 0.8,
-                fit: BoxFit.contain,
-              ),
+            child: Image.asset(
+              'assets/images/Consolidated+urban+logo+2018+.png',
+              width: MediaQuery.of(context).size.width * 0.8,
+              fit: BoxFit.contain,
             ),
           ),
         )
@@ -84,11 +94,11 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'loginPage': (data) async => LoginPageWidget(),
   'homePage': (data) async => NavBarPage(initialPage: 'homePage'),
   'settingsPage': (data) async => NavBarPage(initialPage: 'settingsPage'),
+  'editProfile': (data) async => EditProfileWidget(),
   'moreInfo': (data) async => MoreInfoWidget(
         jobStatus: await getDocumentParameter(
             data, 'jobStatus', MaintenanceRecord.serializer),
       ),
-  'editProfile': (data) async => EditProfileWidget(),
   'ChatPage': (data) async => ChatPageWidget(
         chatUser: await getDocumentParameter(
             data, 'chatUser', UsersRecord.serializer),
@@ -96,6 +106,8 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
       ),
   'MessagesPage': (data) async => NavBarPage(initialPage: 'MessagesPage'),
   'members': (data) async => MembersWidget(),
+  'dash': (data) async => DashWidget(),
+  'report': (data) async => ReportWidget(),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>

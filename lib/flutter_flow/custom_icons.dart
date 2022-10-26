@@ -7,6 +7,7 @@ class FFIcons {
   static const String _icomoon3Family = 'Icomoon3';
   static const String _icomoonscndFamily = 'Icomoonscnd';
   static const String _icomoonFamily = 'Icomoon';
+  static const String _betterFit1Family = 'BetterFit1';
 
   // icomoonLTDs
   static const IconData kattentions =
@@ -120,4 +121,44 @@ class FFIcons {
       IconData(0xe937, fontFamily: _icomoonFamily);
   static const IconData ksend1 = IconData(0xe938, fontFamily: _icomoonFamily);
   static const IconData ksend = IconData(0xe939, fontFamily: _icomoonFamily);
+
+  // BetterFit1
+  static const IconData kshoppingUser =
+      IconData(0xe900, fontFamily: _betterFit1Family);
+  static const IconData kcommentMore =
+      IconData(0xe901, fontFamily: _betterFit1Family);
+  static const IconData ksettingsFont =
+      IconData(0xe902, fontFamily: _betterFit1Family);
+  static const IconData klogouts =
+      IconData(0xe903, fontFamily: _betterFit1Family);
+  static const IconData kheartFilled =
+      IconData(0xe904, fontFamily: _betterFit1Family);
+  static const IconData ksocialFilled =
+      IconData(0xe905, fontFamily: _betterFit1Family);
+  static const IconData kheartUser =
+      IconData(0xe906, fontFamily: _betterFit1Family);
+  static const IconData ksearchUsers =
+      IconData(0xe907, fontFamily: _betterFit1Family);
+  static const IconData kenvelopeUser =
+      IconData(0xe908, fontFamily: _betterFit1Family);
+  static const IconData kcommentUser2 =
+      IconData(0xe909, fontFamily: _betterFit1Family);
+  static const IconData kcommentUser =
+      IconData(0xe90a, fontFamily: _betterFit1Family);
+  static const IconData ksocialnetworkLike =
+      IconData(0xe90b, fontFamily: _betterFit1Family);
+  static const IconData keyeUSER =
+      IconData(0xe90c, fontFamily: _betterFit1Family);
+  static const IconData ksortUser =
+      IconData(0xe90d, fontFamily: _betterFit1Family);
+  static const IconData kaddUserPlus =
+      IconData(0xe90e, fontFamily: _betterFit1Family);
+  static const IconData kusersAll =
+      IconData(0xe90f, fontFamily: _betterFit1Family);
+  static const IconData kshopUser =
+      IconData(0xe910, fontFamily: _betterFit1Family);
+  static const IconData kuserProfile =
+      IconData(0xe911, fontFamily: _betterFit1Family);
+  static const IconData kuserHome1 =
+      IconData(0xe912, fontFamily: _betterFit1Family);
 }

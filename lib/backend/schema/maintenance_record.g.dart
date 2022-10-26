@@ -17,10 +17,17 @@ class _$MaintenanceRecordSerializer
   final String wireName = 'MaintenanceRecord';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, MaintenanceRecord object,
+  Iterable<Object?> serialize(Serializers serializers, MaintenanceRecord object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[];
-    Object value;
+    final result = <Object?>[
+      'residency',
+      serializers.serialize(object.residency,
+          specifiedType: const FullType(BuildingsStruct)),
+      'myStatus',
+      serializers.serialize(object.myStatus,
+          specifiedType: const FullType(StatusStruct)),
+    ];
+    Object? value;
     value = object.issue;
     if (value != null) {
       result
@@ -125,94 +132,103 @@ class _$MaintenanceRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.reference;
+    value = object.ffRef;
     if (value != null) {
       result
         ..add('Document__Reference__Field')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(
-                DocumentReference, const [const FullType(Object)])));
+                DocumentReference, const [const FullType.nullable(Object)])));
     }
     return result;
   }
 
   @override
   MaintenanceRecord deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new MaintenanceRecordBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'issue':
           result.issue = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'status':
           result.status = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'email':
           result.email = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'photo_url':
           result.photoUrl = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'uid':
           result.uid = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'created_time':
           result.createdTime = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime)) as DateTime;
+              specifiedType: const FullType(DateTime)) as DateTime?;
           break;
         case 'phone_number':
           result.phoneNumber = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'display_name':
           result.displayName = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'room':
           result.room = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'building':
           result.building = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'notes':
           result.notes = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'rating':
           result.rating = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'isDone':
           result.isDone = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
         case 'category':
           result.category = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'assigned':
           result.assigned = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'residency':
+          result.residency.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(BuildingsStruct))!
+              as BuildingsStruct);
+          break;
+        case 'myStatus':
+          result.myStatus.replace(serializers.deserialize(value,
+              specifiedType: const FullType(StatusStruct))! as StatusStruct);
           break;
         case 'Document__Reference__Field':
-          result.reference = serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      DocumentReference, const [const FullType(Object)]))
-              as DocumentReference<Object>;
+          result.ffRef = serializers.deserialize(value,
+              specifiedType: const FullType(DocumentReference, const [
+                const FullType.nullable(Object)
+              ])) as DocumentReference<Object?>?;
           break;
       }
     }
@@ -223,41 +239,45 @@ class _$MaintenanceRecordSerializer
 
 class _$MaintenanceRecord extends MaintenanceRecord {
   @override
-  final String issue;
+  final String? issue;
   @override
-  final String status;
+  final String? status;
   @override
-  final String email;
+  final String? email;
   @override
-  final String photoUrl;
+  final String? photoUrl;
   @override
-  final String uid;
+  final String? uid;
   @override
-  final DateTime createdTime;
+  final DateTime? createdTime;
   @override
-  final String phoneNumber;
+  final String? phoneNumber;
   @override
-  final String displayName;
+  final String? displayName;
   @override
-  final String room;
+  final String? room;
   @override
-  final String building;
+  final String? building;
   @override
-  final String notes;
+  final String? notes;
   @override
-  final int rating;
+  final int? rating;
   @override
-  final bool isDone;
+  final bool? isDone;
   @override
-  final String category;
+  final String? category;
   @override
-  final String assigned;
+  final String? assigned;
   @override
-  final DocumentReference<Object> reference;
+  final BuildingsStruct residency;
+  @override
+  final StatusStruct myStatus;
+  @override
+  final DocumentReference<Object?>? ffRef;
 
   factory _$MaintenanceRecord(
-          [void Function(MaintenanceRecordBuilder) updates]) =>
-      (new MaintenanceRecordBuilder()..update(updates)).build();
+          [void Function(MaintenanceRecordBuilder)? updates]) =>
+      (new MaintenanceRecordBuilder()..update(updates))._build();
 
   _$MaintenanceRecord._(
       {this.issue,
@@ -275,8 +295,15 @@ class _$MaintenanceRecord extends MaintenanceRecord {
       this.isDone,
       this.category,
       this.assigned,
-      this.reference})
-      : super._();
+      required this.residency,
+      required this.myStatus,
+      this.ffRef})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        residency, r'MaintenanceRecord', 'residency');
+    BuiltValueNullFieldError.checkNotNull(
+        myStatus, r'MaintenanceRecord', 'myStatus');
+  }
 
   @override
   MaintenanceRecord rebuild(void Function(MaintenanceRecordBuilder) updates) =>
@@ -305,7 +332,9 @@ class _$MaintenanceRecord extends MaintenanceRecord {
         isDone == other.isDone &&
         category == other.category &&
         assigned == other.assigned &&
-        reference == other.reference;
+        residency == other.residency &&
+        myStatus == other.myStatus &&
+        ffRef == other.ffRef;
   }
 
   @override
@@ -326,30 +355,36 @@ class _$MaintenanceRecord extends MaintenanceRecord {
                                                         $jc(
                                                             $jc(
                                                                 $jc(
-                                                                    0,
-                                                                    issue
+                                                                    $jc(
+                                                                        $jc(
+                                                                            0,
+                                                                            issue
+                                                                                .hashCode),
+                                                                        status
+                                                                            .hashCode),
+                                                                    email
                                                                         .hashCode),
-                                                                status
+                                                                photoUrl
                                                                     .hashCode),
-                                                            email.hashCode),
-                                                        photoUrl.hashCode),
-                                                    uid.hashCode),
-                                                createdTime.hashCode),
-                                            phoneNumber.hashCode),
-                                        displayName.hashCode),
-                                    room.hashCode),
-                                building.hashCode),
-                            notes.hashCode),
-                        rating.hashCode),
-                    isDone.hashCode),
-                category.hashCode),
-            assigned.hashCode),
-        reference.hashCode));
+                                                            uid.hashCode),
+                                                        createdTime.hashCode),
+                                                    phoneNumber.hashCode),
+                                                displayName.hashCode),
+                                            room.hashCode),
+                                        building.hashCode),
+                                    notes.hashCode),
+                                rating.hashCode),
+                            isDone.hashCode),
+                        category.hashCode),
+                    assigned.hashCode),
+                residency.hashCode),
+            myStatus.hashCode),
+        ffRef.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('MaintenanceRecord')
+    return (newBuiltValueToStringHelper(r'MaintenanceRecord')
           ..add('issue', issue)
           ..add('status', status)
           ..add('email', email)
@@ -365,79 +400,91 @@ class _$MaintenanceRecord extends MaintenanceRecord {
           ..add('isDone', isDone)
           ..add('category', category)
           ..add('assigned', assigned)
-          ..add('reference', reference))
+          ..add('residency', residency)
+          ..add('myStatus', myStatus)
+          ..add('ffRef', ffRef))
         .toString();
   }
 }
 
 class MaintenanceRecordBuilder
     implements Builder<MaintenanceRecord, MaintenanceRecordBuilder> {
-  _$MaintenanceRecord _$v;
+  _$MaintenanceRecord? _$v;
 
-  String _issue;
-  String get issue => _$this._issue;
-  set issue(String issue) => _$this._issue = issue;
+  String? _issue;
+  String? get issue => _$this._issue;
+  set issue(String? issue) => _$this._issue = issue;
 
-  String _status;
-  String get status => _$this._status;
-  set status(String status) => _$this._status = status;
+  String? _status;
+  String? get status => _$this._status;
+  set status(String? status) => _$this._status = status;
 
-  String _email;
-  String get email => _$this._email;
-  set email(String email) => _$this._email = email;
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
 
-  String _photoUrl;
-  String get photoUrl => _$this._photoUrl;
-  set photoUrl(String photoUrl) => _$this._photoUrl = photoUrl;
+  String? _photoUrl;
+  String? get photoUrl => _$this._photoUrl;
+  set photoUrl(String? photoUrl) => _$this._photoUrl = photoUrl;
 
-  String _uid;
-  String get uid => _$this._uid;
-  set uid(String uid) => _$this._uid = uid;
+  String? _uid;
+  String? get uid => _$this._uid;
+  set uid(String? uid) => _$this._uid = uid;
 
-  DateTime _createdTime;
-  DateTime get createdTime => _$this._createdTime;
-  set createdTime(DateTime createdTime) => _$this._createdTime = createdTime;
+  DateTime? _createdTime;
+  DateTime? get createdTime => _$this._createdTime;
+  set createdTime(DateTime? createdTime) => _$this._createdTime = createdTime;
 
-  String _phoneNumber;
-  String get phoneNumber => _$this._phoneNumber;
-  set phoneNumber(String phoneNumber) => _$this._phoneNumber = phoneNumber;
+  String? _phoneNumber;
+  String? get phoneNumber => _$this._phoneNumber;
+  set phoneNumber(String? phoneNumber) => _$this._phoneNumber = phoneNumber;
 
-  String _displayName;
-  String get displayName => _$this._displayName;
-  set displayName(String displayName) => _$this._displayName = displayName;
+  String? _displayName;
+  String? get displayName => _$this._displayName;
+  set displayName(String? displayName) => _$this._displayName = displayName;
 
-  String _room;
-  String get room => _$this._room;
-  set room(String room) => _$this._room = room;
+  String? _room;
+  String? get room => _$this._room;
+  set room(String? room) => _$this._room = room;
 
-  String _building;
-  String get building => _$this._building;
-  set building(String building) => _$this._building = building;
+  String? _building;
+  String? get building => _$this._building;
+  set building(String? building) => _$this._building = building;
 
-  String _notes;
-  String get notes => _$this._notes;
-  set notes(String notes) => _$this._notes = notes;
+  String? _notes;
+  String? get notes => _$this._notes;
+  set notes(String? notes) => _$this._notes = notes;
 
-  int _rating;
-  int get rating => _$this._rating;
-  set rating(int rating) => _$this._rating = rating;
+  int? _rating;
+  int? get rating => _$this._rating;
+  set rating(int? rating) => _$this._rating = rating;
 
-  bool _isDone;
-  bool get isDone => _$this._isDone;
-  set isDone(bool isDone) => _$this._isDone = isDone;
+  bool? _isDone;
+  bool? get isDone => _$this._isDone;
+  set isDone(bool? isDone) => _$this._isDone = isDone;
 
-  String _category;
-  String get category => _$this._category;
-  set category(String category) => _$this._category = category;
+  String? _category;
+  String? get category => _$this._category;
+  set category(String? category) => _$this._category = category;
 
-  String _assigned;
-  String get assigned => _$this._assigned;
-  set assigned(String assigned) => _$this._assigned = assigned;
+  String? _assigned;
+  String? get assigned => _$this._assigned;
+  set assigned(String? assigned) => _$this._assigned = assigned;
 
-  DocumentReference<Object> _reference;
-  DocumentReference<Object> get reference => _$this._reference;
-  set reference(DocumentReference<Object> reference) =>
-      _$this._reference = reference;
+  BuildingsStructBuilder? _residency;
+  BuildingsStructBuilder get residency =>
+      _$this._residency ??= new BuildingsStructBuilder();
+  set residency(BuildingsStructBuilder? residency) =>
+      _$this._residency = residency;
+
+  StatusStructBuilder? _myStatus;
+  StatusStructBuilder get myStatus =>
+      _$this._myStatus ??= new StatusStructBuilder();
+  set myStatus(StatusStructBuilder? myStatus) => _$this._myStatus = myStatus;
+
+  DocumentReference<Object?>? _ffRef;
+  DocumentReference<Object?>? get ffRef => _$this._ffRef;
+  set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
 
   MaintenanceRecordBuilder() {
     MaintenanceRecord._initializeBuilder(this);
@@ -461,7 +508,9 @@ class MaintenanceRecordBuilder
       _isDone = $v.isDone;
       _category = $v.category;
       _assigned = $v.assigned;
-      _reference = $v.reference;
+      _residency = $v.residency.toBuilder();
+      _myStatus = $v.myStatus.toBuilder();
+      _ffRef = $v.ffRef;
       _$v = null;
     }
     return this;
@@ -474,33 +523,52 @@ class MaintenanceRecordBuilder
   }
 
   @override
-  void update(void Function(MaintenanceRecordBuilder) updates) {
+  void update(void Function(MaintenanceRecordBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$MaintenanceRecord build() {
-    final _$result = _$v ??
-        new _$MaintenanceRecord._(
-            issue: issue,
-            status: status,
-            email: email,
-            photoUrl: photoUrl,
-            uid: uid,
-            createdTime: createdTime,
-            phoneNumber: phoneNumber,
-            displayName: displayName,
-            room: room,
-            building: building,
-            notes: notes,
-            rating: rating,
-            isDone: isDone,
-            category: category,
-            assigned: assigned,
-            reference: reference);
+  MaintenanceRecord build() => _build();
+
+  _$MaintenanceRecord _build() {
+    _$MaintenanceRecord _$result;
+    try {
+      _$result = _$v ??
+          new _$MaintenanceRecord._(
+              issue: issue,
+              status: status,
+              email: email,
+              photoUrl: photoUrl,
+              uid: uid,
+              createdTime: createdTime,
+              phoneNumber: phoneNumber,
+              displayName: displayName,
+              room: room,
+              building: building,
+              notes: notes,
+              rating: rating,
+              isDone: isDone,
+              category: category,
+              assigned: assigned,
+              residency: residency.build(),
+              myStatus: myStatus.build(),
+              ffRef: ffRef);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'residency';
+        residency.build();
+        _$failedField = 'myStatus';
+        myStatus.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'MaintenanceRecord', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

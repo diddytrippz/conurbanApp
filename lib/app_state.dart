@@ -17,9 +17,9 @@ class FFAppState {
     _profilePic = prefs.getString('ff_profilePic') ?? _profilePic;
   }
 
-  SharedPreferences prefs;
+  late SharedPreferences prefs;
 
-  String _profilePic;
+  String _profilePic = '';
   String get profilePic => _profilePic;
   set profilePic(String _value) {
     _profilePic = _value;
@@ -31,7 +31,7 @@ class FFAppState {
   List<bool> listPressed = [];
 }
 
-LatLng _latLngFromString(String val) {
+LatLng? _latLngFromString(String? val) {
   if (val == null) {
     return null;
   }

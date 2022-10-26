@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:from_css_color/from_css_color.dart';
+
 import 'index.dart';
 import 'serializers.dart';
 import 'package:built_value/built_value.dart';
@@ -11,58 +13,49 @@ abstract class MaintenanceRecord
   static Serializer<MaintenanceRecord> get serializer =>
       _$maintenanceRecordSerializer;
 
-  @nullable
-  String get issue;
+  String? get issue;
 
-  @nullable
-  String get status;
+  String? get status;
 
-  @nullable
-  String get email;
+  String? get email;
 
-  @nullable
   @BuiltValueField(wireName: 'photo_url')
-  String get photoUrl;
+  String? get photoUrl;
 
-  @nullable
-  String get uid;
+  String? get uid;
 
-  @nullable
   @BuiltValueField(wireName: 'created_time')
-  DateTime get createdTime;
+  DateTime? get createdTime;
 
-  @nullable
   @BuiltValueField(wireName: 'phone_number')
-  String get phoneNumber;
+  String? get phoneNumber;
 
-  @nullable
   @BuiltValueField(wireName: 'display_name')
-  String get displayName;
+  String? get displayName;
 
-  @nullable
-  String get room;
+  String? get room;
 
-  @nullable
-  String get building;
+  String? get building;
 
-  @nullable
-  String get notes;
+  String? get notes;
 
-  @nullable
-  int get rating;
+  int? get rating;
 
-  @nullable
-  bool get isDone;
+  bool? get isDone;
 
-  @nullable
-  String get category;
+  String? get category;
 
-  @nullable
-  String get assigned;
+  String? get assigned;
 
-  @nullable
+  BuildingsStruct get residency;
+
+  StatusStruct get myStatus;
+
+  DocumentReference? get userRec;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference get reference;
+  DocumentReference? get ffRef;
+  DocumentReference get reference => ffRef!;
 
   static void _initializeBuilder(MaintenanceRecordBuilder builder) => builder
     ..issue = ''
@@ -78,18 +71,20 @@ abstract class MaintenanceRecord
     ..rating = 0
     ..isDone = false
     ..category = ''
-    ..assigned = '';
+    ..assigned = ''
+    ..residency = BuildingsStructBuilder()
+    ..myStatus = StatusStructBuilder();
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('maintenance');
 
   static Stream<MaintenanceRecord> getDocument(DocumentReference ref) => ref
       .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s)));
+      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
   static Future<MaintenanceRecord> getDocumentOnce(DocumentReference ref) => ref
       .get()
-      .then((s) => serializers.deserializeWith(serializer, serializedData(s)));
+      .then((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
   static MaintenanceRecord fromAlgolia(AlgoliaObjectSnapshot snapshot) =>
       MaintenanceRecord(
@@ -110,14 +105,17 @@ abstract class MaintenanceRecord
           ..isDone = snapshot.data['isDone']
           ..category = snapshot.data['category']
           ..assigned = snapshot.data['assigned']
-          ..reference = MaintenanceRecord.collection.doc(snapshot.objectID),
+          ..residency = snapshot.data['residency']
+          ..myStatus = snapshot.data['myStatus']
+          ..userRec = safeGet(() => toRef(snapshot.data['userRec']))
+          ..ffRef = MaintenanceRecord.collection.doc(snapshot.objectID),
       );
 
   static Future<List<MaintenanceRecord>> search(
-          {String term,
-          FutureOr<LatLng> location,
-          int maxResults,
-          double searchRadiusMeters}) =>
+          {String? term,
+          FutureOr<LatLng>? location,
+          int? maxResults,
+          double? searchRadiusMeters}) =>
       FFAlgoliaManager.instance
           .algoliaQuery(
             index: 'maintenance',
@@ -135,41 +133,59 @@ abstract class MaintenanceRecord
   static MaintenanceRecord getDocumentFromData(
           Map<String, dynamic> data, DocumentReference reference) =>
       serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference});
+          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
 }
 
 Map<String, dynamic> createMaintenanceRecordData({
-  String issue,
-  String status,
-  String email,
-  String photoUrl,
-  String uid,
-  DateTime createdTime,
-  String phoneNumber,
-  String displayName,
-  String room,
-  String building,
-  String notes,
-  int rating,
-  bool isDone,
-  String category,
-  String assigned,
-}) =>
-    serializers.toFirestore(
-        MaintenanceRecord.serializer,
-        MaintenanceRecord((m) => m
-          ..issue = issue
-          ..status = status
-          ..email = email
-          ..photoUrl = photoUrl
-          ..uid = uid
-          ..createdTime = createdTime
-          ..phoneNumber = phoneNumber
-          ..displayName = displayName
-          ..room = room
-          ..building = building
-          ..notes = notes
-          ..rating = rating
-          ..isDone = isDone
-          ..category = category
-          ..assigned = assigned));
+  String? issue,
+  String? status,
+  String? email,
+  String? photoUrl,
+  String? uid,
+  DateTime? createdTime,
+  String? phoneNumber,
+  String? displayName,
+  String? room,
+  String? building,
+  String? notes,
+  int? rating,
+  bool? isDone,
+  String? category,
+  String? assigned,
+  BuildingsStruct? residency,
+  StatusStruct? myStatus,
+  DocumentReference? userRec,
+}) {
+  final firestoreData = serializers.toFirestore(
+    MaintenanceRecord.serializer,
+    MaintenanceRecord(
+      (m) => m
+        ..issue = issue
+        ..status = status
+        ..email = email
+        ..photoUrl = photoUrl
+        ..uid = uid
+        ..createdTime = createdTime
+        ..phoneNumber = phoneNumber
+        ..displayName = displayName
+        ..room = room
+        ..building = building
+        ..notes = notes
+        ..rating = rating
+        ..isDone = isDone
+        ..category = category
+        ..assigned = assigned
+        ..residency = BuildingsStructBuilder()
+        ..myStatus = StatusStructBuilder()
+        ..userRec = userRec,
+    ),
+  );
+
+  // Handle nested data for "residency" field.
+  addBuildingsStructData(firestoreData, residency, 'residency');
+
+  // Handle nested data for "myStatus" field.
+  addStatusStructData(firestoreData, myStatus, 'myStatus');
+
+  return firestoreData;
+}

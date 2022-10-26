@@ -1,7 +1,7 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'auth/firebase_user_provider.dart';
 import 'auth/auth_util.dart';
 import 'backend/push_notifications/push_notifications_util.dart';
@@ -30,15 +30,15 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 
   static _MyAppState of(BuildContext context) =>
-      context.findAncestorStateOfType<_MyAppState>();
+      context.findAncestorStateOfType<_MyAppState>()!;
 }
 
 class _MyAppState extends State<MyApp> {
-  Locale _locale;
+  Locale? _locale;
   ThemeMode _themeMode = FlutterFlowTheme.themeMode;
 
-  Stream<ConsolidatedUrbanManagementFirebaseUser> userStream;
-  ConsolidatedUrbanManagementFirebaseUser initialUser;
+  late Stream<ConsolidatedUrbanManagementFirebaseUser> userStream;
+  ConsolidatedUrbanManagementFirebaseUser? initialUser;
   bool displaySplashImage = true;
 
   final authUserSub = authenticatedUserStream.listen((_) {});
@@ -49,6 +49,7 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     userStream = consolidatedUrbanManagementFirebaseUserStream()
       ..listen((user) => initialUser ?? setState(() => initialUser = user));
+    jwtTokenStream.listen((_) {});
     Future.delayed(
       Duration(seconds: 1),
       () => setState(() => displaySplashImage = false),
@@ -62,7 +63,8 @@ class _MyAppState extends State<MyApp> {
     super.dispose();
   }
 
-  void setLocale(Locale value) => setState(() => _locale = value);
+  void setLocale(String language) =>
+      setState(() => _locale = createLocale(language));
   void setThemeMode(ThemeMode mode) => setState(() {
         _themeMode = mode;
         FlutterFlowTheme.saveThemeMode(mode);
@@ -80,19 +82,19 @@ class _MyAppState extends State<MyApp> {
       ],
       locale: _locale,
       supportedLocales: const [
-        Locale('en', ''),
-        Locale('af', ''),
-        Locale('zu', ''),
+        Locale('en'),
+        Locale('af'),
+        Locale('zu'),
       ],
       theme: ThemeData(brightness: Brightness.light),
       darkTheme: ThemeData(brightness: Brightness.dark),
       themeMode: _themeMode,
       home: initialUser == null || displaySplashImage
-          ? Container(
-              color: FlutterFlowTheme.of(context).mellow,
-              child: Center(
-                child: Builder(
-                  builder: (context) => Image.asset(
+          ? Builder(
+              builder: (context) => Container(
+                color: FlutterFlowTheme.of(context).mellow,
+                child: Center(
+                  child: Image.asset(
                     'assets/images/Consolidated+urban+logo+2018+.png',
                     width: MediaQuery.of(context).size.width * 0.8,
                     fit: BoxFit.contain,
@@ -100,7 +102,7 @@ class _MyAppState extends State<MyApp> {
                 ),
               ),
             )
-          : currentUser.loggedIn
+          : currentUser!.loggedIn
               ? PushNotificationsHandler(child: NavBarPage())
               : LoginPageWidget(),
     );
@@ -108,9 +110,10 @@ class _MyAppState extends State<MyApp> {
 }
 
 class NavBarPage extends StatefulWidget {
-  NavBarPage({Key key, this.initialPage}) : super(key: key);
+  NavBarPage({Key? key, this.initialPage, this.page}) : super(key: key);
 
-  final String initialPage;
+  final String? initialPage;
+  final Widget? page;
 
   @override
   _NavBarPageState createState() => _NavBarPageState();
@@ -118,12 +121,14 @@ class NavBarPage extends StatefulWidget {
 
 /// This is the private State class that goes with NavBarPage.
 class _NavBarPageState extends State<NavBarPage> {
-  String _currentPage = 'onboarding';
+  String _currentPageName = 'onboarding';
+  late Widget? _currentPage;
 
   @override
   void initState() {
     super.initState();
-    _currentPage = widget.initialPage ?? _currentPage;
+    _currentPageName = widget.initialPage ?? _currentPageName;
+    _currentPage = widget.page;
   }
 
   @override
@@ -134,13 +139,15 @@ class _NavBarPageState extends State<NavBarPage> {
       'MessagesPage': MessagesPageWidget(),
       'settingsPage': SettingsPageWidget(),
     };
-    final currentIndex = tabs.keys.toList().indexOf(_currentPage);
+    final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
     return Scaffold(
-      body: tabs[_currentPage],
+      body: _currentPage ?? tabs[_currentPageName],
       bottomNavigationBar: GNav(
         selectedIndex: currentIndex,
-        onTabChange: (i) =>
-            setState(() => _currentPage = tabs.keys.toList()[i]),
+        onTabChange: (i) => setState(() {
+          _currentPage = null;
+          _currentPageName = tabs.keys.toList()[i];
+        }),
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         color: FlutterFlowTheme.of(context).campusGrey,
         activeColor: FlutterFlowTheme.of(context).primaryText,
@@ -154,27 +161,27 @@ class _NavBarPageState extends State<NavBarPage> {
         haptic: true,
         tabs: [
           GButton(
-            icon: FontAwesomeIcons.home,
+            icon: FFIcons.kuserHome1,
             text: '',
             iconSize: 24,
           ),
           GButton(
             icon: FontAwesomeIcons.edit,
             text: '',
-            iconSize: 24,
+            iconSize: 25,
           ),
           GButton(
-            icon: FFIcons.kchatboxes,
+            icon: FFIcons.kenvelopeUser,
             text: '',
             textStyle: TextStyle(
               color: FlutterFlowTheme.of(context).tertiaryColor,
             ),
-            iconSize: 28,
+            iconSize: 25,
           ),
           GButton(
-            icon: Icons.settings,
+            icon: FFIcons.ksettingsFont,
             text: '',
-            iconSize: 28,
+            iconSize: 25,
           )
         ],
       ),

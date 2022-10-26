@@ -9,17 +9,18 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginPageWidget extends StatefulWidget {
-  const LoginPageWidget({Key key}) : super(key: key);
+  const LoginPageWidget({Key? key}) : super(key: key);
 
   @override
   _LoginPageWidgetState createState() => _LoginPageWidgetState();
 }
 
 class _LoginPageWidgetState extends State<LoginPageWidget> {
-  TextEditingController textFieldEmailController;
-  TextEditingController textFieldPassController;
-  bool textFieldPassVisibility;
-  TextEditingController textFieldEmailResetController;
+  TextEditingController? textFieldEmailController;
+  TextEditingController? textFieldPassController;
+
+  late bool textFieldPassVisibility;
+  TextEditingController? textFieldEmailResetController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -32,27 +33,35 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
   }
 
   @override
+  void dispose() {
+    textFieldEmailController?.dispose();
+    textFieldPassController?.dispose();
+    textFieldEmailResetController?.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       appBar: PreferredSize(
         preferredSize:
             Size.fromHeight(MediaQuery.of(context).size.height * 0.05),
         child: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           automaticallyImplyLeading: false,
           actions: [],
           elevation: 0,
         ),
       ),
-      backgroundColor: Colors.white,
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height * 1,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: FlutterFlowTheme.of(context).secondaryBackground,
             shape: BoxShape.rectangle,
           ),
           child: Align(
@@ -219,6 +228,28 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                           BorderRadius.circular(
                                                               8),
                                                     ),
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            Color(0x00000000),
+                                                        width: 1,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8),
+                                                    ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            Color(0x00000000),
+                                                        width: 1,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8),
+                                                    ),
                                                     contentPadding:
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(
@@ -300,6 +331,28 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                           BorderRadius.circular(
                                                               8),
                                                     ),
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            Color(0x00000000),
+                                                        width: 1,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8),
+                                                    ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            Color(0x00000000),
+                                                        width: 1,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8),
+                                                    ),
                                                     contentPadding:
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(
@@ -355,9 +408,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                     final user =
                                                         await signInWithEmail(
                                                       context,
-                                                      textFieldEmailController
+                                                      textFieldEmailController!
                                                           .text,
-                                                      textFieldPassController
+                                                      textFieldPassController!
                                                           .text,
                                                     );
                                                     if (user == null) {
@@ -404,7 +457,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                       color: Colors.transparent,
                                                       width: 1,
                                                     ),
-                                                    borderRadius: 12,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            12),
                                                   ),
                                                 ),
                                               ),
@@ -413,7 +468,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                     .fromSTEB(0, 20, 0, 0),
                                                 child: InkWell(
                                                   onTap: () async {
-                                                    if (textFieldEmailController
+                                                    if (textFieldEmailController!
                                                         .text.isEmpty) {
                                                       ScaffoldMessenger.of(
                                                               context)
@@ -428,7 +483,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                     }
                                                     await resetPassword(
                                                       email:
-                                                          textFieldEmailController
+                                                          textFieldEmailController!
                                                               .text,
                                                       context: context,
                                                     );
@@ -505,6 +560,23 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                 borderRadius:
                                                     BorderRadius.circular(8),
                                               ),
+                                              errorBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Color(0x00000000),
+                                                  width: 1,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                              ),
+                                              focusedErrorBorder:
+                                                  OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Color(0x00000000),
+                                                  width: 1,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                              ),
                                               contentPadding:
                                                   EdgeInsetsDirectional
                                                       .fromSTEB(25, 25, 25, 25),
@@ -534,7 +606,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                   25, 30, 25, 0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
-                                              if (textFieldEmailResetController
+                                              if (textFieldEmailResetController!
                                                   .text.isEmpty) {
                                                 ScaffoldMessenger.of(context)
                                                     .showSnackBar(
@@ -548,7 +620,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                               }
                                               await resetPassword(
                                                 email:
-                                                    textFieldEmailResetController
+                                                    textFieldEmailResetController!
                                                         .text,
                                                 context: context,
                                               );
@@ -575,7 +647,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                 color: Colors.transparent,
                                                 width: 1,
                                               ),
-                                              borderRadius: 12,
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
                                             ),
                                           ),
                                         ),

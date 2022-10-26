@@ -7,7 +7,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LanguagesWidget extends StatefulWidget {
-  const LanguagesWidget({Key key}) : super(key: key);
+  const LanguagesWidget({Key? key}) : super(key: key);
 
   @override
   _LanguagesWidgetState createState() => _LanguagesWidgetState();
@@ -67,7 +67,9 @@ class _LanguagesWidgetState extends State<LanguagesWidget> {
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
                         child: AutoSizeText(
-                          'Afrikaans',
+                          FFLocalizations.of(context).getText(
+                            't7f3lc00' /* Afrikaans */,
+                          ),
                           style: FlutterFlowTheme.of(context).title1.override(
                                 fontFamily: 'Roboto',
                                 color: FlutterFlowTheme.of(context).primaryText,
@@ -116,7 +118,9 @@ class _LanguagesWidgetState extends State<LanguagesWidget> {
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
                         child: AutoSizeText(
-                          'English',
+                          FFLocalizations.of(context).getText(
+                            '97digb72' /* English */,
+                          ),
                           style: FlutterFlowTheme.of(context).title1.override(
                                 fontFamily: 'Roboto',
                                 color: FlutterFlowTheme.of(context).primaryText,
@@ -175,7 +179,9 @@ class _LanguagesWidgetState extends State<LanguagesWidget> {
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
                         child: AutoSizeText(
-                          'Zulu',
+                          FFLocalizations.of(context).getText(
+                            'uutqfcje' /* Zulu */,
+                          ),
                           style: FlutterFlowTheme.of(context).title1.override(
                                 fontFamily: 'Roboto',
                                 color: FlutterFlowTheme.of(context).primaryText,

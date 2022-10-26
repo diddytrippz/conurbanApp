@@ -12,7 +12,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:text_search/text_search.dart';
 
 class MembersWidget extends StatefulWidget {
-  const MembersWidget({Key key}) : super(key: key);
+  const MembersWidget({Key? key}) : super(key: key);
 
   @override
   _MembersWidgetState createState() => _MembersWidgetState();
@@ -20,7 +20,7 @@ class MembersWidget extends StatefulWidget {
 
 class _MembersWidgetState extends State<MembersWidget> {
   List<UsersRecord> simpleSearchResults = [];
-  TextEditingController textController;
+  TextEditingController? textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -30,9 +30,16 @@ class _MembersWidgetState extends State<MembersWidget> {
   }
 
   @override
+  void dispose() {
+    textController?.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         automaticallyImplyLeading: false,
@@ -70,7 +77,6 @@ class _MembersWidgetState extends State<MembersWidget> {
         centerTitle: false,
         elevation: 0,
       ),
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -128,13 +134,13 @@ class _MembersWidgetState extends State<MembersWidget> {
                                   records
                                       .map(
                                         (record) => TextSearchItem(record, [
-                                          record.displayName,
-                                          record.building
+                                          record.displayName!,
+                                          record.building!
                                         ]),
                                       )
                                       .toList(),
                                 )
-                                    .search(textController.text)
+                                    .search(textController!.text)
                                     .map((r) => r.object)
                                     .take(10)
                                     .toList(),
@@ -155,6 +161,20 @@ class _MembersWidgetState extends State<MembersWidget> {
                             borderRadius: BorderRadius.circular(18),
                           ),
                           focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(18),
+                          ),
+                          errorBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(18),
+                          ),
+                          focusedErrorBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0x00000000),
                               width: 1,
@@ -211,9 +231,7 @@ class _MembersWidgetState extends State<MembersWidget> {
                       child: Builder(
                         builder: (context) {
                           final listSearrch =
-                              (simpleSearchResults?.toList() ?? [])
-                                  .take(15)
-                                  .toList();
+                              simpleSearchResults.toList().take(15).toList();
                           if (listSearrch.isEmpty) {
                             return Center(
                               child: SvgPicture.asset(
@@ -235,7 +253,7 @@ class _MembersWidgetState extends State<MembersWidget> {
                                   listSearrch[listSearrchIndex];
                               return InkWell(
                                 onTap: () async {
-                                  if ((listSearrchItem.role) == 'Management') {
+                                  if (listSearrchItem.role == 'Management') {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(
@@ -326,7 +344,7 @@ class _MembersWidgetState extends State<MembersWidget> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  listSearrchItem.displayName,
+                                                  listSearrchItem.displayName!,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyText1
@@ -342,7 +360,7 @@ class _MembersWidgetState extends State<MembersWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  listSearrchItem.building,
+                                                  listSearrchItem.building!,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyText1
